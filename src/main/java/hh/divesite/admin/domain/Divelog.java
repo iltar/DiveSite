@@ -28,10 +28,10 @@ public class Divelog {
     private String diveType;
     private double maxDepth;
     private double avgDepth;
-    private String waterTemp;
+    private int waterTemp;
     private String current;
     private String visibility;
-    private String weights;
+    private int weights;
     private String wetsuit;
     private String gasBlend;
 
@@ -41,7 +41,7 @@ public class Divelog {
     public Divelog(double avgDepth, String country, String current, LocalDate dateAdded, String description,
             LocalDate diveDate, int diveNumber, String diveType, Long divelogId, String divestite, LocalTime endTime,
             String gasBlend, double maxDepth, String region, LocalTime startTime, LocalTime timeAdded,
-            String visibility, String waterTemp, String weights, String wetsuit) {
+            String visibility, int waterTemp, int weights, String wetsuit) {
         this.avgDepth = avgDepth;
         this.country = country;
         this.current = current;
@@ -176,11 +176,11 @@ public class Divelog {
         this.avgDepth = avgDepth;
     }
 
-    public String getWaterTemp() {
+    public int getWaterTemp() {
         return waterTemp;
     }
 
-    public void setWaterTemp(String waterTemp) {
+    public void setWaterTemp(int waterTemp) {
         this.waterTemp = waterTemp;
     }
 
@@ -200,11 +200,11 @@ public class Divelog {
         this.visibility = visibility;
     }
 
-    public String getWeights() {
+    public int getWeights() {
         return weights;
     }
 
-    public void setWeights(String weights) {
+    public void setWeights(int weights) {
         this.weights = weights;
     }
 

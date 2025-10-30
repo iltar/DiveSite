@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divelogs</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Diver</th>
+            <th>Dive number</th>
+            <th>Country</th>
+            <th>Divesite</th>
+            <th>Dive date</th>
+            <th>Dive start</th>
+            <th>Dive end</th>
+            <th>Dive type</th>
+            <th>Max depth</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr th:each = "dl : ${dls}">
+            <td>(diver name)</td>
+            <td th:text="${dl.diveNumber}"></td>
+            <td th:text="${dl.country}"></td>
+            <td th:text="${dl.divesite}"></td>
+            <td th:text="${dl.diveDate}"></td>
+            <td th:text="${dl.startTime}"></td>
+            <td th:text="${dl.endTime}"></td>
+            <td th:text="${dl.diveType}"></td>
+            <td th:text="${dl.maxDepth}"></td>
+            <td>Edit/View</td> <!--Edit button-->
+            <td>Delete</td> <!--Delete button-->
+        </tr>
+    </table>
+</body>
+</html>
