@@ -13,7 +13,6 @@ public class Divelog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long divelogId;
-
     // private User diver;
     private LocalDate dateAdded;
     private LocalTime timeAdded;
@@ -24,10 +23,12 @@ public class Divelog {
     private LocalTime endTime;
     private String country;
     private String region;
-    private String divestite;
+    private String divesite;
     private String diveType;
     private double maxDepth;
     private double avgDepth;
+    private int startAir;
+    private int endAir;
     private int waterTemp;
     private String current;
     private String visibility;
@@ -35,33 +36,35 @@ public class Divelog {
     private String wetsuit;
     private String gasBlend;
 
-        public Divelog() {
+    public Divelog() {
     }
 
-    public Divelog(double avgDepth, String country, String current, LocalDate dateAdded, String description,
-            LocalDate diveDate, int diveNumber, String diveType, Long divelogId, String divestite, LocalTime endTime,
-            String gasBlend, double maxDepth, String region, LocalTime startTime, LocalTime timeAdded,
-            String visibility, int waterTemp, int weights, String wetsuit) {
-        this.avgDepth = avgDepth;
-        this.country = country;
-        this.current = current;
+    public Divelog(Long divelogId, LocalDate dateAdded, LocalTime timeAdded, int diveNumber, String description,
+            LocalDate diveDate, LocalTime startTime, LocalTime endTime, String country, String region,
+            String divesite, String diveType, double maxDepth, double avgDepth, int startAir, int endAir,
+            int waterTemp, String current, String visibility, int weights, String wetsuit, String gasBlend) {
+        this.divelogId = divelogId;
         this.dateAdded = dateAdded;
+        this.timeAdded = timeAdded;
+        this.diveNumber = diveNumber;
         this.description = description;
         this.diveDate = diveDate;
-        this.diveNumber = diveNumber;
-        this.diveType = diveType;
-        this.divelogId = divelogId;
-        this.divestite = divestite;
-        this.endTime = endTime;
-        this.gasBlend = gasBlend;
-        this.maxDepth = maxDepth;
-        this.region = region;
         this.startTime = startTime;
-        this.timeAdded = timeAdded;
-        this.visibility = visibility;
+        this.endTime = endTime;
+        this.country = country;
+        this.region = region;
+        this.divesite = divesite;
+        this.diveType = diveType;
+        this.maxDepth = maxDepth;
+        this.avgDepth = avgDepth;
+        this.startAir = startAir;
+        this.endAir = endAir;
         this.waterTemp = waterTemp;
+        this.current = current;
+        this.visibility = visibility;
         this.weights = weights;
         this.wetsuit = wetsuit;
+        this.gasBlend = gasBlend;
     }
 
     public Long getDivelogId() {
@@ -144,12 +147,12 @@ public class Divelog {
         this.region = region;
     }
 
-    public String getDivestite() {
-        return divestite;
+    public String getDivesite() {
+        return divesite;
     }
 
-    public void setDivestite(String divestite) {
-        this.divestite = divestite;
+    public void setDivesite(String divesite) {
+        this.divesite = divesite;
     }
 
     public String getDiveType() {
@@ -224,6 +227,22 @@ public class Divelog {
         this.gasBlend = gasBlend;
     }
 
+    public int getStartAir() {
+        return startAir;
+    }
+
+    public void setStartAir(int startAir) {
+        this.startAir = startAir;
+    }
+
+    public int getEndAir() {
+        return endAir;
+    }
+
+    public void setEndAir(int endAir) {
+        this.endAir = endAir;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -237,12 +256,10 @@ public class Divelog {
         sb.append(", startTime=").append(startTime);
         sb.append(", endTime=").append(endTime);
         sb.append(", country=").append(country);
-        sb.append(", divestite=").append(divestite);
+        sb.append(", divestite=").append(divesite);
         sb.append(", maxDepth=").append(maxDepth);
         sb.append('}');
         return sb.toString();
     }
-
-
 
 }
