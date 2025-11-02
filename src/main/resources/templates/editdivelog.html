@@ -4,6 +4,7 @@
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="/admin.css">
       <title>Edit Divelog</title>
     </head>
     <body>
@@ -54,7 +55,8 @@
         <input id="visibility" type="text" th:field="*{visibility}">
 
         <label for="description">Description:</label>
-        <input id="description" type="text" th:field="*{description}" />
+        <textarea id="description" th:field="*{description}"></textarea>
+        
         <input type="submit" value="Save & Return" />
       </form>
     </body>

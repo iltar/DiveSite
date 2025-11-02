@@ -4,12 +4,13 @@
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="/admin.css">
       <title>Add Divelog</title>
     </head>
     <body>
       <form th:object="${dl}" th:action="@{/saveDivelog}" method="post">
         <input type="hidden" th:field="*{timeAdded}">
-        
+
         <label for="diveNumber">Dive number:</label>
         <input id="diveNumber" type="number" th:field="*{diveNumber}" />
         
@@ -53,7 +54,7 @@
         <input id="visibility" type="text" th:field="*{visibility}">
 
         <label for="description">Description:</label>
-        <input id="description" type="text" th:field="*{description}" />
+        <textarea id="description" th:field="*{description}"></textarea>
 
         <input type="submit" value="Add Divelog" />
       </form>
