@@ -8,14 +8,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Divelog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long divelogId;
-    // private User diver;
     private LocalDateTime timeAdded;
+
+    @ManyToOne
+    @JoinColumn(name="userId")
+    private User diver;
+
     private int diveNumber;
     private String description;
     private LocalDate diveDate;
@@ -39,12 +45,13 @@ public class Divelog {
     public Divelog() {
     }
 
-    public Divelog(Long divelogId, LocalDateTime timeAdded, int diveNumber, String description,
+    public Divelog(Long divelogId, LocalDateTime timeAdded, User diver, int diveNumber, String description,
             LocalDate diveDate, LocalTime startTime, LocalTime endTime, String country, String region,
             String divesite, String diveType, double maxDepth, double avgDepth, int startAir, int endAir,
             int waterTemp, String current, String visibility, int weights, String wetsuit, String gasBlend) {
         this.divelogId = divelogId;
         this.timeAdded = timeAdded;
+        this.diver = diver;
         this.diveNumber = diveNumber;
         this.description = description;
         this.diveDate = diveDate;
@@ -234,11 +241,20 @@ public class Divelog {
         this.endAir = endAir;
     }
 
+    public User getDiver() {
+        return diver;
+    }
+
+    public void setDiver(User diver) {
+        this.diver = diver;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Divelog{");
         sb.append("divelogId=").append(divelogId);
+        sb.append(", diver=").append(diver);
         sb.append(", timeAdded=").append(timeAdded);
         sb.append(", diveNumber=").append(diveNumber);
         sb.append(", description=").append(description);
