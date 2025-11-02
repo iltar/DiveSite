@@ -31,8 +31,8 @@
             <td th:text="${dl.endTime}"></td>
             <td th:text="${dl.diveType}"></td>
             <td th:text="${dl.maxDepth}"></td>
-            <td>Edit/View</td> <!--Edit button-->
-            <td>Delete</td> <!--Delete button-->
+            <td><a th:href="@{/editDivelog/{id}(id=${dl.divelogId})}">Edit/View</a></td>
+            <td><a th:href="@{/deleteDivelog/{id}(id=${dl.divelogId})}">Delete</a></td>
         </tr>
     </table>
 </body>
