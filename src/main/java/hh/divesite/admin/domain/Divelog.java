@@ -1,6 +1,7 @@
 package hh.divesite.admin.domain;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import jakarta.persistence.Entity;
@@ -14,8 +15,7 @@ public class Divelog {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long divelogId;
     // private User diver;
-    private LocalDate dateAdded;
-    private LocalTime timeAdded;
+    private LocalDateTime timeAdded;
     private int diveNumber;
     private String description;
     private LocalDate diveDate;
@@ -39,12 +39,11 @@ public class Divelog {
     public Divelog() {
     }
 
-    public Divelog(Long divelogId, LocalDate dateAdded, LocalTime timeAdded, int diveNumber, String description,
+    public Divelog(Long divelogId, LocalDateTime timeAdded, int diveNumber, String description,
             LocalDate diveDate, LocalTime startTime, LocalTime endTime, String country, String region,
             String divesite, String diveType, double maxDepth, double avgDepth, int startAir, int endAir,
             int waterTemp, String current, String visibility, int weights, String wetsuit, String gasBlend) {
         this.divelogId = divelogId;
-        this.dateAdded = dateAdded;
         this.timeAdded = timeAdded;
         this.diveNumber = diveNumber;
         this.description = description;
@@ -75,19 +74,11 @@ public class Divelog {
         this.divelogId = divelogId;
     }
 
-    public LocalDate getDateAdded() {
-        return dateAdded;
-    }
-
-    public void setDateAdded(LocalDate dateAdded) {
-        this.dateAdded = dateAdded;
-    }
-
-    public LocalTime getTimeAdded() {
+    public LocalDateTime getTimeAdded() {
         return timeAdded;
     }
 
-    public void setTimeAdded(LocalTime timeAdded) {
+    public void setTimeAdded(LocalDateTime timeAdded) {
         this.timeAdded = timeAdded;
     }
 
@@ -248,7 +239,6 @@ public class Divelog {
         StringBuilder sb = new StringBuilder();
         sb.append("Divelog{");
         sb.append("divelogId=").append(divelogId);
-        sb.append(", dateAdded=").append(dateAdded);
         sb.append(", timeAdded=").append(timeAdded);
         sb.append(", diveNumber=").append(diveNumber);
         sb.append(", description=").append(description);

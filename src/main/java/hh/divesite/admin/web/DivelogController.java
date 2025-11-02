@@ -1,5 +1,7 @@
 package hh.divesite.admin.web;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +34,9 @@ public class DivelogController {
     
     @GetMapping("/newDivelog")
     public String getNewDivelog(Model model) {
-        model.addAttribute("dl", new Divelog());
+        Divelog dl = new Divelog();
+        dl.setTimeAdded(LocalDateTime.now());
+        model.addAttribute("dl", dl);
         return "createdivelog";
     }
 

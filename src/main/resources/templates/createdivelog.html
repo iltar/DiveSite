@@ -8,7 +8,8 @@
     </head>
     <body>
       <form th:object="${dl}" th:action="@{/saveDivelog}" method="post">
-        <!-- add hidden fields for timestamp infos -->
+        <input type="hidden" th:field="*{timeAdded}">
+        
         <label for="diveNumber">Dive number:</label>
         <input id="diveNumber" type="number" th:field="*{diveNumber}" />
         
@@ -23,7 +24,6 @@
         <label for="avgDepth">Average depth:</label>
         <input id="avgDepth" type="number" th:field="*{avgDepth}">
 
-        <!-- fix time inputs -->
         <label for="diveDate">Dive date:</label>
         <input id="diveDate" type="date" th:field="*{diveDate}" />
         <label for="startTime">Time in:</label>
