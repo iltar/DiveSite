@@ -2,6 +2,7 @@ package hh.divesite.admin.domain;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,23 +15,28 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
 
+    @Column (nullable = false, unique = true)
     private String username;
+
+    @Column (nullable = false)
     private String passwordHash;
+
+    @Column (nullable = false, unique = true)
     private String email;
     private String description;
     private String level;
     private int dives;
     private String role;
 
-    @OneToMany
-    private List<Divelog> divelogs;
+    //@OneToMany
+    //private List<Divelog> divelogs;
 
     public User() {
     }
 
-    public User(Long userId, String username, String passwordHash, String email, String description, String level,
-            int dives, String role, List<Divelog> divelogs) {
-        this.userId = userId;
+    //List<Divelog> divelogs
+    public User(String username, String passwordHash, String email, String description, String level,
+            int dives, String role) {
         this.username = username;
         this.passwordHash = passwordHash;
         this.email = email;
@@ -38,7 +44,7 @@ public class User {
         this.level = level;
         this.dives = dives;
         this.role = role;
-        this.divelogs = divelogs;
+        //this.divelogs = divelogs;
     }
 
     public Long getUserId() {
@@ -105,18 +111,20 @@ public class User {
         this.role = role;
     }
 
-    public List<Divelog> getDivelogs() {
+    /*
+     public List<Divelog> getDivelogs() {
         return divelogs;
     }
 
     public void setDivelogs(List<Divelog> divelogs) {
         this.divelogs = divelogs;
     }
+     */
 
     @Override
     public String toString() {
         return "User [userId=" + userId + ", username=" + username + ", email=" + email + ", description=" + description
-                + ", level=" + level + ", dives=" + dives + ", role=" + role + ", divelogs=" + divelogs + "]";
+                + ", level=" + level + ", dives=" + dives + ", role=" + role + "]";
     }
     
 }

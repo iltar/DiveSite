@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,16 +23,33 @@ public class Divelog {
     //@JoinColumn(name="userId")
     //private User diver;
 
+    @Column (nullable = false)
     private int diveNumber;
+
     private String description;
+
+    @Column (nullable = false)
     private LocalDate diveDate;
+
+    @Column (nullable = false)
     private LocalTime startTime;
+
+    @Column (nullable = false)
     private LocalTime endTime;
+
+    @Column (nullable = false)
     private String country;
+
     private String region;
+    
+    @Column (nullable = false)
     private String divesite;
+
     private String diveType;
+
+    @Column (nullable = false)
     private double maxDepth;
+    
     private double avgDepth;
     private int startAir;
     private int endAir;

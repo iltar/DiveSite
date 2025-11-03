@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/admin.css">
+    <title>Users</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Level</th>
+            <th>Dives</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr th:each = "usr : ${usrs}">
+            <td th:text="${usr.userId}"></td>
+            <td th:text="${usr.username}"></td>
+            <td th:text="${usr.email}"></td>
+            <td th:text="${usr.level}"></td>
+            <td th:text="${usr.dives}"></td>
+            <td><a th:href="" class="btn-blue">View profile</a></td>
+            <td><a th:href="" class="btn-red">Delete</a></td>
+        </tr>
+    </table>
+</body>
+</html>
