@@ -10,6 +10,7 @@
 <body>
     <table>
         <tr>
+            <th>Divelog ID</th>
             <th>Diver</th>
             <th>Dive number</th>
             <th>Country</th>
@@ -20,9 +21,10 @@
             <th>Dive type</th>
             <th>Max depth</th>
             <th></th>
-            <th><a href="/newDivelog">Add new</a></th>
+            <th><a href="/newDivelog" class="btn-green">Add new</a></th>
         </tr>
         <tr th:each = "dl : ${dls}">
+            <td th:text="${dl.divelogId}"></td>
             <td>(diver name)</td>
             <td th:text="${dl.diveNumber}"></td>
             <td th:text="${dl.country}"></td>
@@ -32,8 +34,8 @@
             <td th:text="${dl.endTime}"></td>
             <td th:text="${dl.diveType}"></td>
             <td th:text="${dl.maxDepth}"></td>
-            <td><a th:href="@{/editDivelog/{id}(id=${dl.divelogId})}">Edit/View</a></td>
-            <td><a th:href="@{/deleteDivelog/{id}(id=${dl.divelogId})}">Delete</a></td>
+            <td><a th:href="@{/editDivelog/{id}(id=${dl.divelogId})}" class="btn-blue">Edit/View</a></td>
+            <td><a th:href="@{/deleteDivelog/{id}(id=${dl.divelogId})}" class="btn-red">Delete</a></td>
         </tr>
     </table>
 </body>

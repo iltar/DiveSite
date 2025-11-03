@@ -13,50 +13,53 @@
 
         <label for="diveNumber">Dive number:</label>
         <input id="diveNumber" type="number" th:field="*{diveNumber}" />
+        <label for="diveDate">Dive date:</label>
+        <input id="diveDate" type="date" th:field="*{diveDate}" />
         
         <label for="diveType">Dive type:</label>
         <input id="diveType" type="text" th:field="*{diveType}">
-        <label for="startAir">Start air:</label>
-        <input id="startAir" type="number" th:field="*{startAir}">
-        <label for="endAir">End air:</label>
-        <input id="endAir" type="number" th:field="*{endAir}">
-        <label for="maxDepth">Max depth:</label>
-        <input id="maxDepth" type="number" th:field="*{maxDepth}">
-        <label for="avgDepth">Average depth:</label>
-        <input id="avgDepth" type="number" th:field="*{avgDepth}">
-
-        <label for="diveDate">Dive date:</label>
-        <input id="diveDate" type="date" th:field="*{diveDate}" />
         <label for="startTime">Time in:</label>
         <input id="startTime" type="text" th:field="*{startTime}">
+
+        <label for="startAir">Start air:</label>
+        <input id="startAir" type="number" th:field="*{startAir}">
         <label id="endTime">Time out:</label>
         <input id="endTime" type="text" th:field="*{endTime}">
 
+        <label for="endAir">End air:</label>
+        <input id="endAir" type="number" th:field="*{endAir}">
         <label for="country">Country:</label>
         <input id="country" type="text" th:field="*{country}">
+
+        <label for="maxDepth">Max depth:</label>
+        <input id="maxDepth" type="number" th:field="*{maxDepth}">
         <label for="region">Region:</label>
         <input id="region" type="text" th:field="*{region}">
+
+        <label for="avgDepth">Average depth:</label>
+        <input id="avgDepth" type="number" th:field="*{avgDepth}">
         <label for="divesite">Divesite:</label>
         <input id="divesite" type="text" th:field="*{divesite}">
 
         <label for="weights">Weigths: </label>
         <input id="weights" type="number" th:field="*{weights}">
-        <label for="wetsuit">Wetsuit:</label>
-        <input id="wetsuit" type="text" th:field="*{wetsuit}">
-        <label for="gasBlend">Gas blend:</label>
-        <input id="gasBlend" type="text" th:field="*{gasBlend}">
-
         <label for="waterTemp">Water temperature:</label>
         <input id="waterTemp" type="number" th:field="*{waterTemp}">
+
+        <label for="wetsuit">Wetsuit:</label>
+        <input id="wetsuit" type="text" th:field="*{wetsuit}">
         <label for="current">Current:</label>
         <input id="current" type="text" th:field="*{current}">
+
+        <label for="gasBlend">Gas blend:</label>
+        <input id="gasBlend" type="text" th:field="*{gasBlend}">
         <label for="visibility">Visibility</label>
         <input id="visibility" type="text" th:field="*{visibility}">
 
         <label for="description">Description:</label>
         <textarea id="description" th:field="*{description}"></textarea>
 
-        <input type="submit" value="Add Divelog" />
+        <input type="submit" value="Add Divelog" class="btn-green"/>
       </form>
     </body>
   </html>
