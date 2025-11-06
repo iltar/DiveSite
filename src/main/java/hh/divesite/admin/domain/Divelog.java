@@ -21,7 +21,7 @@ public class Divelog {
 
     //@ManyToOne
     //@JoinColumn(name="userId")
-    //private User diver;
+    //private DSUser diver;
 
     @Column (nullable = false)
     private int diveNumber;
@@ -63,7 +63,7 @@ public class Divelog {
     public Divelog() {
     }
 
-    // parametri: User diver, 
+    // parametri: DSUser diver, 
     public Divelog(Long divelogId, LocalDateTime timeAdded, int diveNumber, String description,
             LocalDate diveDate, LocalTime startTime, LocalTime endTime, String country, String region,
             String divesite, String diveType, double maxDepth, double avgDepth, int startAir, int endAir,
@@ -260,11 +260,11 @@ public class Divelog {
         this.endAir = endAir;
     }
     /*
-    public User getDiver() {
+    public DSUser getDiver() {
         return diver;
     }
 
-    public void setDiver(User diver) {
+    public void setDiver(DSUser diver) {
         this.diver = diver;
     }
      */

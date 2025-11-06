@@ -9,7 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
-@Entity
+@Entity(name= "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,12 +26,22 @@ public class User {
     private String description;
     private String level;
     private int dives;
+
+    @Column (nullable = false)
     private String role;
 
     //@OneToMany
     //private List<Divelog> divelogs;
 
     public User() {
+    }
+
+    // only manditory fields, used for testing purposes mainly
+    public User(String username, String passwordHash, String email, String role) {
+        this.username = username;
+        this.passwordHash = passwordHash;
+        this.email = email;
+        this.role = role;
     }
 
     //List<Divelog> divelogs
