@@ -35,14 +35,14 @@ public class DivelogController {
         Divelog dl = new Divelog();
         dl.setTimeAdded(LocalDateTime.now());
         model.addAttribute("dl", dl);
-        model.addAttribute("usrs", uRep.findAll());
+        model.addAttribute("usrs", uRep.findByRole("USER"));
         return "createdivelog";
     }
 
     @GetMapping("/editDivelog/{id}")
     public String getEditDivelog(@PathVariable() Long id, Model model) {
         model.addAttribute("dl", rep.findById(id));
-        model.addAttribute("usrs", uRep.findAll());
+        model.addAttribute("usrs", uRep.findByRole("USER"));
         return "editdivelog";
     }
 

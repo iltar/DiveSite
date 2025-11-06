@@ -26,12 +26,10 @@ public class AdminApplication {
 			List<Divelog> ls = new ArrayList<Divelog>();
 			User u1 = new User("admin", "$2a$10$gVT3OCW85KDXwSNgJdU5nOnCri4QHS1izB8gLcQr0lP7CFOD05cT6", "admin@divesite.com", "ADMIN");
 			User u2 = new User("example", "$2a$10$gVT3OCW85KDXwSNgJdU5nOnCri4QHS1izB8gLcQr0lP7CFOD05cT6", "example@divesite.com", "USER");
-			u1.setDivelogs(ls);
 			u2.setDivelogs(ls);
 
 			userRep.save(u1);
 			userRep.save(u2);
-			
 		};
 	}
 }
