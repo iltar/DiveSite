@@ -11,7 +11,7 @@
 	<groupId>hh.divesite</groupId>
 	<artifactId>admin</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>admin</name>
+	<name>DiveSite</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

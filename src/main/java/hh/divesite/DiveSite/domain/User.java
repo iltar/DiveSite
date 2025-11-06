@@ -1,4 +1,4 @@
-package hh.divesite.admin.domain;
+package hh.divesite.DiveSite.domain;
 
 import java.util.List;
 

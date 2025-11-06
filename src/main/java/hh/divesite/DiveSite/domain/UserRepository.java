@@ -1,4 +1,4 @@
-package hh.divesite.admin.domain;
+package hh.divesite.DiveSite.domain;
 
 import org.springframework.data.repository.CrudRepository;
 import java.util.List;

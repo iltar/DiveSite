@@ -1,4 +1,4 @@
-package hh.divesite.admin;
+package hh.divesite.DiveSite;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

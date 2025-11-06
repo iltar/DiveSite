@@ -1,4 +1,4 @@
-package hh.divesite.admin.web;
+package hh.divesite.DiveSite.web;
 
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import hh.divesite.admin.domain.UserRepository;
-import hh.divesite.admin.domain.User;
+import hh.divesite.DiveSite.domain.User;
+import hh.divesite.DiveSite.domain.UserRepository;
 
 /**
  * This class is used by spring security to authenticate and authorize user

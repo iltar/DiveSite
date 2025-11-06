@@ -1,4 +1,4 @@
-package hh.divesite.admin.domain;
+package hh.divesite.DiveSite.domain;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

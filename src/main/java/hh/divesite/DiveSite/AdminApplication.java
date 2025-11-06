@@ -1,4 +1,4 @@
-package hh.divesite.admin;
+package hh.divesite.DiveSite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import hh.divesite.admin.domain.Divelog;
-import hh.divesite.admin.domain.User;
-import hh.divesite.admin.domain.UserRepository;
+import hh.divesite.DiveSite.domain.Divelog;
+import hh.divesite.DiveSite.domain.User;
+import hh.divesite.DiveSite.domain.UserRepository;
 
 @SpringBootApplication
 public class AdminApplication {
