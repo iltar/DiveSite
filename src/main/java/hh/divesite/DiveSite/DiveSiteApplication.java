@@ -13,10 +13,10 @@ import hh.divesite.DiveSite.domain.User;
 import hh.divesite.DiveSite.domain.UserRepository;
 
 @SpringBootApplication
-public class AdminApplication {
+public class DiveSiteApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AdminApplication.class, args);
+		SpringApplication.run(DiveSiteApplication.class, args);
 	}
 
 	@Bean
