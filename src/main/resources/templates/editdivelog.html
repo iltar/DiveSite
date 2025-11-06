@@ -61,8 +61,12 @@
         <textarea id="description" th:field="*{description}"></textarea>
 
         <label for="diver">Diver:</label>
-        <select id="diver">
-          <option>Admin</option>
+        <select id="diver" th:field="*{diver.userId}">
+          <option
+            th:each="usr : ${usrs}"
+            th:value="${usr.userId}"
+            th:text="${usr.username}"
+          ></option>
         </select>
         
         <input type="submit" value="Save & Return" class="btn-green"/>

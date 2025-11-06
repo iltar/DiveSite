@@ -19,35 +19,35 @@ public class Divelog {
     private Long divelogId;
     private LocalDateTime timeAdded;
 
-    //@ManyToOne
-    //@JoinColumn(name="userId")
-    //private DSUser diver;
+    @ManyToOne
+    @JoinColumn(name="userId")
+    private User diver;
 
-    @Column (nullable = false)
+    //@Column (nullable = false)
     private int diveNumber;
 
     private String description;
 
-    @Column (nullable = false)
+    //@Column (nullable = false)
     private LocalDate diveDate;
 
-    @Column (nullable = false)
+    //@Column (nullable = false)
     private LocalTime startTime;
 
-    @Column (nullable = false)
+    //@Column (nullable = false)
     private LocalTime endTime;
 
-    @Column (nullable = false)
+    //@Column (nullable = false)
     private String country;
 
     private String region;
     
-    @Column (nullable = false)
+    //@Column (nullable = false)
     private String divesite;
 
     private String diveType;
 
-    @Column (nullable = false)
+    //@Column (nullable = false)
     private double maxDepth;
     
     private double avgDepth;
@@ -63,14 +63,13 @@ public class Divelog {
     public Divelog() {
     }
 
-    // parametri: DSUser diver, 
-    public Divelog(Long divelogId, LocalDateTime timeAdded, int diveNumber, String description,
+    public Divelog(Long divelogId, LocalDateTime timeAdded, User diver, int diveNumber, String description,
             LocalDate diveDate, LocalTime startTime, LocalTime endTime, String country, String region,
             String divesite, String diveType, double maxDepth, double avgDepth, int startAir, int endAir,
             int waterTemp, String current, String visibility, int weights, String wetsuit, String gasBlend) {
         this.divelogId = divelogId;
         this.timeAdded = timeAdded;
-        //this.diver = diver;
+        this.diver = diver;
         this.diveNumber = diveNumber;
         this.description = description;
         this.diveDate = diveDate;
@@ -259,22 +258,21 @@ public class Divelog {
     public void setEndAir(int endAir) {
         this.endAir = endAir;
     }
-    /*
-    public DSUser getDiver() {
+
+    public User getDiver() {
         return diver;
     }
 
-    public void setDiver(DSUser diver) {
+    public void setDiver(User diver) {
         this.diver = diver;
     }
-     */
     
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Divelog{");
         sb.append("divelogId=").append(divelogId);
-        //sb.append(", diver=").append(diver);
+        sb.append(", diver=").append(diver);
         sb.append(", timeAdded=").append(timeAdded);
         sb.append(", diveNumber=").append(diveNumber);
         sb.append(", description=").append(description);

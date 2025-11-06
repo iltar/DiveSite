@@ -30,8 +30,8 @@ public class User {
     @Column (nullable = false)
     private String role;
 
-    //@OneToMany
-    //private List<Divelog> divelogs;
+    @OneToMany
+    private List<Divelog> divelogs;
 
     public User() {
     }
@@ -44,9 +44,8 @@ public class User {
         this.role = role;
     }
 
-    //List<Divelog> divelogs
     public User(String username, String passwordHash, String email, String description, String level,
-            int dives, String role) {
+            int dives, String role, List<Divelog> divelogs) {
         this.username = username;
         this.passwordHash = passwordHash;
         this.email = email;
@@ -54,7 +53,7 @@ public class User {
         this.level = level;
         this.dives = dives;
         this.role = role;
-        //this.divelogs = divelogs;
+        this.divelogs = divelogs;
     }
 
     public Long getUserId() {
@@ -121,7 +120,7 @@ public class User {
         this.role = role;
     }
 
-    /*
+    
      public List<Divelog> getDivelogs() {
         return divelogs;
     }
@@ -129,7 +128,6 @@ public class User {
     public void setDivelogs(List<Divelog> divelogs) {
         this.divelogs = divelogs;
     }
-     */
 
     @Override
     public String toString() {

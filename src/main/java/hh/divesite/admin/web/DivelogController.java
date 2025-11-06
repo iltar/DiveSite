@@ -11,13 +11,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import hh.divesite.admin.domain.Divelog;
 import hh.divesite.admin.domain.DivelogRepository;
+import hh.divesite.admin.domain.UserRepository;
 
 @Controller
 public class DivelogController {
     private final DivelogRepository rep;
+    private final UserRepository uRep;
 
-    public DivelogController(DivelogRepository rep) {
+    public DivelogController(DivelogRepository rep, UserRepository uRep) {
         this.rep = rep;
+        this.uRep = uRep;
     }
 
     // http://localhost:8080
@@ -32,12 +35,14 @@ public class DivelogController {
         Divelog dl = new Divelog();
         dl.setTimeAdded(LocalDateTime.now());
         model.addAttribute("dl", dl);
+        model.addAttribute("usrs", uRep.findAll());
         return "createdivelog";
     }
 
     @GetMapping("/editDivelog/{id}")
     public String getEditDivelog(@PathVariable() Long id, Model model) {
         model.addAttribute("dl", rep.findById(id));
+        model.addAttribute("usrs", uRep.findAll());
         return "editdivelog";
     }
 

@@ -4,67 +4,71 @@
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="/admin.css">
+      <link rel="stylesheet" href="/admin.css" />
       <title>Add Divelog</title>
     </head>
     <body>
       <form th:object="${dl}" th:action="@{/saveDivelog}" method="post">
-        <input type="hidden" th:field="*{timeAdded}">
+        <input type="hidden" th:field="*{timeAdded}" />
 
         <label for="diveNumber">Dive number:</label>
         <input id="diveNumber" type="number" th:field="*{diveNumber}" />
         <label for="diveDate">Dive date:</label>
         <input id="diveDate" type="date" th:field="*{diveDate}" />
-        
+
         <label for="diveType">Dive type:</label>
-        <input id="diveType" type="text" th:field="*{diveType}">
+        <input id="diveType" type="text" th:field="*{diveType}" />
         <label for="startTime">Time in:</label>
-        <input id="startTime" type="text" th:field="*{startTime}">
+        <input id="startTime" type="text" th:field="*{startTime}" />
 
         <label for="startAir">Start air:</label>
-        <input id="startAir" type="number" th:field="*{startAir}">
+        <input id="startAir" type="number" th:field="*{startAir}" />
         <label id="endTime">Time out:</label>
-        <input id="endTime" type="text" th:field="*{endTime}">
+        <input id="endTime" type="text" th:field="*{endTime}" />
 
         <label for="endAir">End air:</label>
-        <input id="endAir" type="number" th:field="*{endAir}">
+        <input id="endAir" type="number" th:field="*{endAir}" />
         <label for="country">Country:</label>
-        <input id="country" type="text" th:field="*{country}">
+        <input id="country" type="text" th:field="*{country}" />
 
         <label for="maxDepth">Max depth:</label>
-        <input id="maxDepth" type="number" th:field="*{maxDepth}">
+        <input id="maxDepth" type="number" th:field="*{maxDepth}" />
         <label for="region">Region:</label>
-        <input id="region" type="text" th:field="*{region}">
+        <input id="region" type="text" th:field="*{region}" />
 
         <label for="avgDepth">Average depth:</label>
-        <input id="avgDepth" type="number" th:field="*{avgDepth}">
+        <input id="avgDepth" type="number" th:field="*{avgDepth}" />
         <label for="divesite">Divesite:</label>
-        <input id="divesite" type="text" th:field="*{divesite}">
+        <input id="divesite" type="text" th:field="*{divesite}" />
 
         <label for="weights">Weigths: </label>
-        <input id="weights" type="number" th:field="*{weights}">
+        <input id="weights" type="number" th:field="*{weights}" />
         <label for="waterTemp">Water temperature:</label>
-        <input id="waterTemp" type="number" th:field="*{waterTemp}">
+        <input id="waterTemp" type="number" th:field="*{waterTemp}" />
 
         <label for="wetsuit">Wetsuit:</label>
-        <input id="wetsuit" type="text" th:field="*{wetsuit}">
+        <input id="wetsuit" type="text" th:field="*{wetsuit}" />
         <label for="current">Current:</label>
-        <input id="current" type="text" th:field="*{current}">
+        <input id="current" type="text" th:field="*{current}" />
 
         <label for="gasBlend">Gas blend:</label>
-        <input id="gasBlend" type="text" th:field="*{gasBlend}">
+        <input id="gasBlend" type="text" th:field="*{gasBlend}" />
         <label for="visibility">Visibility</label>
-        <input id="visibility" type="text" th:field="*{visibility}">
+        <input id="visibility" type="text" th:field="*{visibility}" />
 
         <label for="description">Description:</label>
         <textarea id="description" th:field="*{description}"></textarea>
 
         <label for="diver">Diver:</label>
-        <select id="diver">
-          <option>Admin</option>
+        <select id="diver" th:field="*{diver.userId}">
+          <option
+            th:each="usr : ${usrs}"
+            th:value="${usr.userId}"
+            th:text="${usr.username}"
+          ></option>
         </select>
 
-        <input type="submit" value="Add Divelog" class="btn-green"/>
+        <input type="submit" value="Add Divelog" class="btn-green" />
       </form>
     </body>
   </html>
