@@ -1,4 +1,4 @@
-package hh.divesite.admin.web;
+package hh.divesite.DiveSite.web;
 
 import java.time.LocalDateTime;
 
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import hh.divesite.admin.domain.Divelog;
-import hh.divesite.admin.domain.DivelogRepository;
-import hh.divesite.admin.domain.UserRepository;
+import hh.divesite.DiveSite.domain.Divelog;
+import hh.divesite.DiveSite.domain.DivelogRepository;
+import hh.divesite.DiveSite.domain.UserRepository;
 
 @Controller
 public class DivelogController {

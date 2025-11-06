@@ -1,12 +1,11 @@
-package hh.divesite.admin.web;
+package hh.divesite.DiveSite.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import hh.divesite.admin.domain.UserRepository;
-import org.springframework.web.bind.annotation.RequestParam;
+import hh.divesite.DiveSite.domain.UserRepository;
 
 
 @Controller
