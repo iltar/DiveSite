@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<html xmlns="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/admin.css">
-    <title>Users</title>
-</head>
-<body>
-    <table>
+  <html xmlns="http://www.thymeleaf.org">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="/admin.css" />
+      <title>Users</title>
+    </head>
+    <body>
+      <nav>
+        <a th:href="@{/divelogs}">Divelogs</a>
+        <a class="active" th:href="@{/users}">Users</a>
+      </nav>
+      <table>
         <tr>
-            <th>User ID</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Level</th>
-            <th>Dives</th>
-            <th></th>
-            <th></th>
+          <th>User ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Level</th>
+          <th>Dives</th>
+          <th></th>
+          <th></th>
         </tr>
-        <tr th:each = "usr : ${usrs}">
-            <td th:text="${usr.userId}"></td>
-            <td th:text="${usr.username}"></td>
-            <td th:text="${usr.email}"></td>
-            <td th:text="${usr.level}"></td>
-            <td th:text="${usr.dives}"></td>
-            <td><a class="btn-blue">View profile</a></td>
-            <td><a th:href="@{/deleteUser/{id}(id=${usr.userId})}" class="btn-red">Delete</a></td>
+        <tr th:each="usr : ${usrs}">
+          <td th:text="${usr.userId}"></td>
+          <td th:text="${usr.username}"></td>
+          <td th:text="${usr.email}"></td>
+          <td th:text="${usr.level}"></td>
+          <td th:text="${usr.dives}"></td>
+          <td><a class="btn-blue">View profile</a></td>
+          <td>
+            <a th:href="@{/deleteUser/{id}(id=${usr.userId})}" class="btn-red"
+              >Delete</a
+            >
+          </td>
         </tr>
-    </table>
-</body>
+      </table>
+    </body>
+  </html>
 </html>
