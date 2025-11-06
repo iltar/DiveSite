@@ -3,8 +3,11 @@ package hh.divesite.admin.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import hh.divesite.admin.domain.UserRepository;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class UserController {
@@ -19,4 +22,11 @@ public class UserController {
         model.addAttribute("usrs", rep.findByRole("USER"));
         return "userlist";
     }
+
+    @GetMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable() Long id) {
+        rep.deleteById(id);
+        return "redirect:/users";
+    }
+    
 }
