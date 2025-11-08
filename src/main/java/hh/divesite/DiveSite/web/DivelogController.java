@@ -2,6 +2,7 @@ package hh.divesite.DiveSite.web;
 
 import java.time.LocalDateTime;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,14 +24,16 @@ public class DivelogController {
         this.uRep = uRep;
     }
 
-    // http://localhost:8080
+    // http://localhost:8080/divelogs
     @GetMapping("/divelogs")
+    @PreAuthorize("hasRole('ADMIN')")
     public String getDivelogs(Model model) {
         model.addAttribute("dls", rep.findAll());
         return "diveloglist";
     }
 
     @GetMapping("/newDivelog")
+    @PreAuthorize("hasRole('ADMIN')")
     public String getNewDivelog(Model model) {
         Divelog dl = new Divelog();
         dl.setTimeAdded(LocalDateTime.now());
@@ -40,6 +43,7 @@ public class DivelogController {
     }
 
     @GetMapping("/editDivelog/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String getEditDivelog(@PathVariable() Long id, Model model) {
         model.addAttribute("dl", rep.findById(id));
         model.addAttribute("usrs", uRep.findByRole("USER"));
@@ -47,12 +51,14 @@ public class DivelogController {
     }
 
     @PostMapping("/saveDivelog")
+    @PreAuthorize("hasRole('ADMIN')")
     public String saveDivelog(@ModelAttribute Divelog dl) {
         rep.save(dl);
         return "redirect:/divelogs";
     }
 
     @GetMapping("/deleteDivelog/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteDivelog(@PathVariable() Long id) {
         rep.deleteById(id);
         return "redirect:/divelogs";
