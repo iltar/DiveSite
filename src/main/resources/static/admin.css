@@ -37,6 +37,15 @@ body {
 }
 
 .login a {
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.login a:hover {
+  color: var(--successColor);
+}
+
+.login-btn {
   font-size: 20px;
   padding: 2px 10px;
   border: 2px solid var(--textColor);
@@ -44,7 +53,7 @@ body {
   margin: auto;
 }
 
-.login a:hover {
+.login-btn:hover {
   background-color: var(--bgColor);
 }
 

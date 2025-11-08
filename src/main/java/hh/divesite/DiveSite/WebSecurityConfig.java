@@ -21,6 +21,7 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/*.css", "/welcome", "/login", "/register").permitAll()
+                        //.requestMatchers("/divelogs*", "/editDivelog*", "/users*").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .formLogin(formlogin -> formlogin
                         .loginPage("/login")
@@ -28,7 +29,7 @@ public class WebSecurityConfig {
                         .permitAll())
                 .logout((logout) -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/")
+                        .logoutSuccessUrl("/welcome")
                         .invalidateHttpSession(true));
         ;
         return http.build();

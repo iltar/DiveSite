@@ -28,7 +28,7 @@ public class UserController {
 
     @GetMapping("/register")
     public String register(Model model) {
-        model.addAttribute(null);
+        //model.addAttribute(null);
         return "register";
     }
 
