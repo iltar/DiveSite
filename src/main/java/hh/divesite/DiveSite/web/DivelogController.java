@@ -24,7 +24,7 @@ public class DivelogController {
     }
 
     // http://localhost:8080
-    @GetMapping({ "/", "/divelogs" })
+    @GetMapping("/divelogs")
     public String getDivelogs(Model model) {
         model.addAttribute("dls", rep.findAll());
         return "diveloglist";

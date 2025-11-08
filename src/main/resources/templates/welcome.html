@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <html xmlns="http://www.thymeleaf.org">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="/admin.css" />
+      <title>Welcome to DiveSite</title>
+    </head>
+    <body>
+      <div class="login">
+        <h1>Welcome to DiveSite!</h1>
+        <a th:href="@{/login}">Log in</a>
+        <p>or</p>
+        <a th:href="@{/register}">Register as user</a>
+      </div>
+    </body>
+  </html>
+</html>

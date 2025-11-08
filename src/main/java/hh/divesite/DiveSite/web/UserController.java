@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import hh.divesite.DiveSite.domain.UserRepository;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @Controller
@@ -14,6 +17,22 @@ public class UserController {
 
     public UserController(UserRepository rep) {
         this.rep = rep;
+    }
+
+    @GetMapping({"/", "/welcome"})
+    public String getWelcome() {
+        return "welcome";
+    }
+    
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/register")
+    public String register(Model model) {
+        model.addAttribute(null);
+        return "register";
     }
 
     @GetMapping("/users")
@@ -27,5 +46,4 @@ public class UserController {
         rep.deleteById(id);
         return "redirect:/users";
     }
-    
 }

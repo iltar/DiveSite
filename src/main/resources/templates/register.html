@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <html xmlns="http://www.thymeleaf.org">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="/admin.css" />
+      <title>Welcome to DiveSite</title>
+    </head>
+    <body>
+      <form th:action="@{/login}" method="post">
+        <label>Username:</label>
+        <label>Email:</label>
+        <label>Password:</label>
+        <label>Password again:</label>
+      </form>
+    </body>
+  </html>
+</html>

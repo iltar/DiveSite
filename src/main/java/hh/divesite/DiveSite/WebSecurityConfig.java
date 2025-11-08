@@ -15,11 +15,13 @@ public class WebSecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/*.css", "/welcome", "/login", "/register").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(formlogin -> formlogin
-                        // .loginPage("/login")
+                        .loginPage("/login")
                         .defaultSuccessUrl("/divelogs", true)
                         .permitAll());
+        ;
         return http.build();
     }
 
