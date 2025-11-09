@@ -20,8 +20,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/*.css", "/welcome", "/login", "/register").permitAll()
-                        //.requestMatchers("/divelogs*", "/editDivelog*", "/users*").hasRole("ADMIN")
+                        .requestMatchers("/*.css", "/welcome", "/login", "/register", "/saveUser").permitAll()
+                        .requestMatchers("/divelogs*", "/editDivelog*", "/users*").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .formLogin(formlogin -> formlogin
                         .loginPage("/login")

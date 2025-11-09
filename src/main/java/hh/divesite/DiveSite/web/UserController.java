@@ -1,12 +1,19 @@
 package hh.divesite.DiveSite.web;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import hh.divesite.DiveSite.domain.RegisterForm;
+import hh.divesite.DiveSite.domain.User;
 import hh.divesite.DiveSite.domain.UserRepository;
+import jakarta.validation.Valid;
 
 @Controller
 public class UserController {
@@ -28,7 +35,7 @@ public class UserController {
 
     @GetMapping("/register")
     public String register(Model model) {
-        //model.addAttribute(null);
+        model.addAttribute("form", new RegisterForm());
         return "register";
     }
 
@@ -44,5 +51,36 @@ public class UserController {
     public String deleteUser(@PathVariable() Long id) {
         rep.deleteById(id);
         return "redirect:/users";
+    }
+
+    @PostMapping("/saveUser")
+    public String saveUser(@Valid @ModelAttribute() RegisterForm form, BindingResult br) {
+        if (!br.hasErrors()) {
+            if (rep.findByUsername(form.getUsername()) == null) {
+                if (rep.findByEmail(form.getEmail()) == null) {
+                    if (form.passwordMatches()) {
+                        System.out.println(form.toString());
+                        String pwd = form.getPassword();
+                        BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
+                        String hashPwd = bc.encode(pwd);
+                        User u = new User(form.getUsername(), hashPwd, form.getEmail(), "USER");
+                        rep.save(u);
+                        System.out.println(u.toString());
+                    } else {
+                        br.rejectValue("passwordCheck", "err.passCheck", "Passwords do not match");
+                        return "redirect:/register";
+                    }
+                } else {
+                    br.rejectValue("email", "err.email", "Email already in use");
+                    return "redirect:/register";
+                }
+            } else {
+                br.rejectValue("username", "err.username", "Username already in use");
+                return "redirect:/register";
+            }
+        } else {
+            return "redirect:/register";
+        }
+        return "redirect:/login";
     }
 }

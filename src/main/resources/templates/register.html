@@ -8,12 +8,17 @@
       <title>Welcome to DiveSite</title>
     </head>
     <body>
-      <form class="login" th:action="@{/login}" method="post">
+      <form class="login" th:object="${form}" th:action="@{/saveUser}" method="post">
         <h1>Create an account</h1>
-        <label>Username:</label>
-        <label>Email:</label>
-        <label>Password:</label>
-        <label>Password again:</label>
+        <label for="username">Username:</label>
+        <input id="username" type="text" th:field="*{username}">
+        <label for="email">Email:</label>
+        <input id="email" type="email" th:field="*{email}">
+        <label for="password">Password:</label>
+        <input id="password" type="password" th:field="*{password}">	
+        <label for="passwordCheck">Password:</label>
+        <input id="passwordCheck" type="password" th:field="*{passwordCheck}">
+        <label></label>
         <input type="submit" value="Register">
         <br>
         <p>Already have an account? <a th:href="@{/login}">Log in here</a></p>

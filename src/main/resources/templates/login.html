@@ -10,13 +10,13 @@
     <body>
       <form class="login" th:action="@{/login}" method="post">
         <h1>Log in</h1>
-        <label>Username :</label>
-        <input type="text" name="username" />
-        <label>Password:</label>
-        <input type="password" name="password" />
+        <label for="username">Username :</label>
+        <input id="username" type="text" name="username" />
+        <label for="password">Password:</label>
+        <input id="password" type="password" name="password" />
         <label></label>
         <input type="submit" value="Log in" />
-        <p th:if="${param.error}">Invalid username and password.</p>
+        <p th:if="${param.error}">Invalid username or password.</p>
         <br>
         <p>Don't have an account? <a  th:href="@{/register}">Register here</a></p>
       </form>
