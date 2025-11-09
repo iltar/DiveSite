@@ -54,28 +54,22 @@ public class DivelogController {
 
     @PostMapping("/saveNewDivelog")
     @PreAuthorize("hasRole('ADMIN')")
-    public String saveNewDivelog(@Valid @ModelAttribute Divelog dl, BindingResult br, Model model) {
+    public String saveNewDivelog(@Valid @ModelAttribute("dl") Divelog dl, BindingResult br, Model model) {
         if (br.hasErrors()) {
-            model.addAttribute("dl", dl);
-            model.addAttribute("usrs", uRep.findByRole("USER"));
             return "createdivelog";
-        } else {
-            rep.save(dl);
-            return "redirect:/divelogs";
         }
+        rep.save(dl);
+        return "redirect:/divelogs";
     }
 
     @PostMapping("/saveEditedDivelog")
     @PreAuthorize("hasRole('ADMIN')")
-    public String saveEditedDivelog(@Valid @ModelAttribute Divelog dl, BindingResult br, Model model) {
+    public String saveEditedDivelog(@Valid @ModelAttribute("dl") Divelog dl, BindingResult br, Model model) {
         if (br.hasErrors()) {
-            model.addAttribute("dl", dl);
-            model.addAttribute("usrs", uRep.findByRole("USER"));
             return "editdivelog";
-        } else {
-            rep.save(dl);
-            return "redirect:/divelogs";
         }
+        rep.save(dl);
+        return "redirect:/divelogs";
     }
 
     @GetMapping("/deleteDivelog/{id}")

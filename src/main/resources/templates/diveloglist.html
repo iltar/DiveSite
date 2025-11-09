@@ -1,62 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <html xmlns="http://www.thymeleaf.org">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="/admin.css" />
-      <title>Divelogs</title>
-    </head>
-    <body>
-      <nav>
-        <a class="active" th:href="@{/divelogs}">Divelogs</a>
-        <a th:href="@{/users}">Users</a>
-        <form class="logout" th:action="@{/logout}" method="post">
-          <input class="logout-btn" type="submit" value="Log out" />
-        </form>
-      </nav>
-      <table>
-        <tr>
-          <th>Divelog ID</th>
-          <th>Diver</th>
-          <th>Dive number</th>
-          <th>Country</th>
-          <th>Divesite</th>
-          <th>Dive date</th>
-          <th>Dive start</th>
-          <th>Dive end</th>
-          <th>Dive type</th>
-          <th>Max depth</th>
-          <th></th>
-          <th><a href="/newDivelog" class="btn-green">Add new</a></th>
-        </tr>
-        <tr th:each="dl : ${dls}">
-          <td th:text="${dl.divelogId}"></td>
-          <td th:text="${dl.diver.username}"></td>
-          <td th:text="${dl.diveNumber}"></td>
-          <td th:text="${dl.country}"></td>
-          <td th:text="${dl.divesite}"></td>
-          <td th:text="${dl.diveDate}"></td>
-          <td th:text="${dl.startTime}"></td>
-          <td th:text="${dl.endTime}"></td>
-          <td th:text="${dl.diveType}"></td>
-          <td th:text="${dl.maxDepth}"></td>
-          <td>
-            <a
-              th:href="@{/editDivelog/{id}(id=${dl.divelogId})}"
-              class="btn-blue"
-              >Edit/View</a
-            >
-          </td>
-          <td>
-            <a
-              th:href="@{/deleteDivelog/{id}(id=${dl.divelogId})}"
-              class="btn-red"
-              >Delete</a
-            >
-          </td>
-        </tr>
-      </table>
-    </body>
-  </html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/admin.css" />
+  <title>Divelogs</title>
+</head>
+
+<body>
+  <nav>
+    <a class="active" th:href="@{/divelogs}">Divelogs</a>
+    <a th:href="@{/users}">Users</a>
+    <form class="logout" th:action="@{/logout}" method="post">
+      <input class="logout-btn" type="submit" value="Log out" />
+    </form>
+  </nav>
+  <table>
+    <tr>
+      <th>Divelog ID</th>
+      <th>Diver</th>
+      <th>Dive number</th>
+      <th>Country</th>
+      <th>Divesite</th>
+      <th>Dive date</th>
+      <th>Dive start</th>
+      <th>Dive end</th>
+      <th>Dive type</th>
+      <th>Max depth</th>
+      <th></th>
+      <th><a href="/newDivelog" class="btn-green">Add new</a></th>
+    </tr>
+    <tr th:each="dl : ${dls}">
+      <td th:text="${dl.divelogId}"></td>
+      <td th:text="${dl.diver.username}"></td>
+      <td th:text="${dl.diveNumber}"></td>
+      <td th:text="${dl.country}"></td>
+      <td th:text="${dl.divesite}"></td>
+      <td th:text="${dl.diveDate}"></td>
+      <td th:text="${dl.startTime}"></td>
+      <td th:text="${dl.endTime}"></td>
+      <td th:text="${dl.diveType}"></td>
+      <td th:text="${dl.maxDepth}"></td>
+      <td>
+        <a th:href="@{/editDivelog/{id}(id=${dl.divelogId})}" class="btn-blue">Edit/View</a>
+      </td>
+      <td>
+        <a th:href="@{/deleteDivelog/{id}(id=${dl.divelogId})}" class="btn-red">Delete</a>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
+
 </html>

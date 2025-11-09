@@ -173,8 +173,18 @@ label {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-style: italic;
-  width: 44%;
+  width: 94%;
   margin: 2px 3%;
+}
+
+.input-error-right {
+  color: var(--textColor);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-style: italic;
+  width: 94%;
+  margin: 2px 3%;
+  text-align: right;
 }
 
 .red {

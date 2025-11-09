@@ -54,7 +54,7 @@ public class UserController {
     }
 
     @PostMapping("/saveUser")
-    public String saveUser(@Valid @ModelAttribute("form") RegisterForm form, BindingResult br) {
+    public String saveUser(@Valid @ModelAttribute() RegisterForm form, BindingResult br) {
         if (br.hasErrors()) {
             return "register";
         }
@@ -66,7 +66,7 @@ public class UserController {
                     String hashPwd = bc.encode(pwd);
                     User u = new User(form.getUsername(), hashPwd, form.getEmail(), "USER");
                     rep.save(u);
-                    return "redirect:/welcome";
+                    return "redirect:/login";
                 } else {
                     br.rejectValue("passwordCheck", "err.passCheck", "Passwords do not match");
                     System.out.println("passwords don't match");

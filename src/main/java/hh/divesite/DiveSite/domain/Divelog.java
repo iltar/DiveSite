@@ -24,52 +24,55 @@ public class Divelog {
 
     @ManyToOne
     @JoinColumn(name="userId")
+    @NotNull
     private User diver;
 
-    @NotNull
-    @Positive
+    @NotNull(message = "Dive number can't be empty")
+    @Positive(message = "Dive number must be bigger than 0")
     private int diveNumber;
 
     private String description;
 
-    @NotNull
+    @NotNull(message = "Dive date can't be empty")
     @DateTimeFormat (pattern = "yyyy-MM-dd")
-    @Past(message = "Dive can't be in the future")
+    @Past(message = "Dive date can't be in the future")
     private LocalDate diveDate;
 
-    @NotBlank
+    @NotBlank(message = "Start time can't be empty")
     private String startTime;
 
-    @NotBlank
+    @NotBlank(message = "End time can't be empty")
     private String endTime;
 
-    @NotBlank
+    @NotBlank(message = "Country can't be empty")
     private String country;
 
     private String region;
     
-    @NotBlank
+    @NotBlank(message = "Divesite can't be empty")
     private String divesite;
 
     private String diveType;
 
-    @NotNull
-    @Positive
+    @NotNull(message = "Max depth can't be empty")
+    @Positive(message = "Max depth must be bigger than 0")
     private double maxDepth;
     
-    @Positive
+    @Positive(message = "Average depth must be bigger than 0")
     private double avgDepth;
 
-    @Positive
+    @Positive(message = "Start air must be bigger than 0")
     private int startAir;
 
-    @PositiveOrZero
+    @PositiveOrZero(message = "End air can't be less than 0")
     private int endAir;
+
+    @Positive(message = "Temperature must be bigger than 0")
     private int waterTemp;
     private String current;
     private String visibility;
 
-    @PositiveOrZero
+    @PositiveOrZero(message = "Weight can't be less than 0")
     private int weights;
     private String wetsuit;
     private String gasBlend;
