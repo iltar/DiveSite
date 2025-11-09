@@ -2,15 +2,18 @@ package hh.divesite.DiveSite.domain;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-
-import jakarta.persistence.Column;
+import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 public class Divelog {
@@ -23,39 +26,50 @@ public class Divelog {
     @JoinColumn(name="userId")
     private User diver;
 
-    //@Column (nullable = false)
+    @NotNull
+    @Positive
     private int diveNumber;
 
     private String description;
 
-    //@Column (nullable = false)
+    @NotNull
+    @DateTimeFormat (pattern = "yyyy-MM-dd")
+    @Past(message = "Dive can't be in the future")
     private LocalDate diveDate;
 
-    //@Column (nullable = false)
-    private LocalTime startTime;
+    @NotBlank
+    private String startTime;
 
-    //@Column (nullable = false)
-    private LocalTime endTime;
+    @NotBlank
+    private String endTime;
 
-    //@Column (nullable = false)
+    @NotBlank
     private String country;
 
     private String region;
     
-    //@Column (nullable = false)
+    @NotBlank
     private String divesite;
 
     private String diveType;
 
-    //@Column (nullable = false)
+    @NotNull
+    @Positive
     private double maxDepth;
     
+    @Positive
     private double avgDepth;
+
+    @Positive
     private int startAir;
+
+    @PositiveOrZero
     private int endAir;
     private int waterTemp;
     private String current;
     private String visibility;
+
+    @PositiveOrZero
     private int weights;
     private String wetsuit;
     private String gasBlend;
@@ -64,7 +78,7 @@ public class Divelog {
     }
 
     public Divelog(Long divelogId, LocalDateTime timeAdded, User diver, int diveNumber, String description,
-            LocalDate diveDate, LocalTime startTime, LocalTime endTime, String country, String region,
+            LocalDate diveDate, String startTime, String endTime, String country, String region,
             String divesite, String diveType, double maxDepth, double avgDepth, int startAir, int endAir,
             int waterTemp, String current, String visibility, int weights, String wetsuit, String gasBlend) {
         this.divelogId = divelogId;
@@ -131,19 +145,19 @@ public class Divelog {
         this.diveDate = diveDate;
     }
 
-    public LocalTime getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalTime startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public LocalTime getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalTime endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
@@ -285,5 +299,4 @@ public class Divelog {
         sb.append('}');
         return sb.toString();
     }
-
 }

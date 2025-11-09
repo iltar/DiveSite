@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import hh.divesite.DiveSite.domain.Divelog;
 import hh.divesite.DiveSite.domain.DivelogRepository;
 import hh.divesite.DiveSite.domain.UserRepository;
+import jakarta.validation.Valid;
 
 @Controller
 public class DivelogController {
@@ -50,11 +52,30 @@ public class DivelogController {
         return "editdivelog";
     }
 
-    @PostMapping("/saveDivelog")
+    @PostMapping("/saveNewDivelog")
     @PreAuthorize("hasRole('ADMIN')")
-    public String saveDivelog(@ModelAttribute Divelog dl) {
-        rep.save(dl);
-        return "redirect:/divelogs";
+    public String saveNewDivelog(@Valid @ModelAttribute Divelog dl, BindingResult br, Model model) {
+        if (br.hasErrors()) {
+            model.addAttribute("dl", dl);
+            model.addAttribute("usrs", uRep.findByRole("USER"));
+            return "createdivelog";
+        } else {
+            rep.save(dl);
+            return "redirect:/divelogs";
+        }
+    }
+
+    @PostMapping("/saveEditedDivelog")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String saveEditedDivelog(@Valid @ModelAttribute Divelog dl, BindingResult br, Model model) {
+        if (br.hasErrors()) {
+            model.addAttribute("dl", dl);
+            model.addAttribute("usrs", uRep.findByRole("USER"));
+            return "editdivelog";
+        } else {
+            rep.save(dl);
+            return "redirect:/divelogs";
+        }
     }
 
     @GetMapping("/deleteDivelog/{id}")
