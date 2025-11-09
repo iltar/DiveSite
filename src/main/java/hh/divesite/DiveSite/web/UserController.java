@@ -54,33 +54,33 @@ public class UserController {
     }
 
     @PostMapping("/saveUser")
-    public String saveUser(@Valid @ModelAttribute() RegisterForm form, BindingResult br) {
-        if (!br.hasErrors()) {
-            if (rep.findByUsername(form.getUsername()) == null) {
-                if (rep.findByEmail(form.getEmail()) == null) {
-                    if (form.passwordMatches()) {
-                        System.out.println(form.toString());
-                        String pwd = form.getPassword();
-                        BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
-                        String hashPwd = bc.encode(pwd);
-                        User u = new User(form.getUsername(), hashPwd, form.getEmail(), "USER");
-                        rep.save(u);
-                        System.out.println(u.toString());
-                    } else {
-                        br.rejectValue("passwordCheck", "err.passCheck", "Passwords do not match");
-                        return "redirect:/register";
-                    }
+    public String saveUser(@Valid @ModelAttribute("form") RegisterForm form, BindingResult br) {
+        if (br.hasErrors()) {
+            return "register";
+        }
+        if (rep.findByUsername(form.getUsername()) == null) {
+            if (rep.findByEmail(form.getEmail()) == null) {
+                if (form.passwordMatches()) {
+                    String pwd = form.getPassword();
+                    BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
+                    String hashPwd = bc.encode(pwd);
+                    User u = new User(form.getUsername(), hashPwd, form.getEmail(), "USER");
+                    rep.save(u);
+                    return "redirect:/welcome";
                 } else {
-                    br.rejectValue("email", "err.email", "Email already in use");
-                    return "redirect:/register";
+                    br.rejectValue("passwordCheck", "err.passCheck", "Passwords do not match");
+                    System.out.println("passwords don't match");
+                    return "register";
                 }
             } else {
-                br.rejectValue("username", "err.username", "Username already in use");
-                return "redirect:/register";
+                br.rejectValue("email", "err.email", "Email already in use");
+                System.out.println("email in use");
+                return "register";
             }
         } else {
-            return "redirect:/register";
+            br.rejectValue("username", "err.username", "Username already in use");
+            System.out.println("username in use");
+            return "register";
         }
-        return "redirect:/login";
     }
 }

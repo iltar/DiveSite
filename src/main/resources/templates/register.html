@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <html xmlns="http://www.thymeleaf.org">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="/admin.css" />
-      <title>Welcome to DiveSite</title>
-    </head>
-    <body>
-      <form class="login" th:object="${form}" th:action="@{/saveUser}" method="post">
-        <h1>Create an account</h1>
-        <label for="username">Username:</label>
-        <input id="username" type="text" th:field="*{username}">
-        <label for="email">Email:</label>
-        <input id="email" type="email" th:field="*{email}">
-        <label for="password">Password:</label>
-        <input id="password" type="password" th:field="*{password}">	
-        <label for="passwordCheck">Password:</label>
-        <input id="passwordCheck" type="password" th:field="*{passwordCheck}">
-        <label></label>
-        <input type="submit" value="Register">
-        <br>
-        <p>Already have an account? <a th:href="@{/login}">Log in here</a></p>
-      </form>
-    </body>
-  </html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/admin.css" />
+  <title>Welcome to DiveSite</title>
+</head>
+<body>
+  <form class="login" th:object="${form}" th:action="@{/saveUser}" method="post">
+    <h1>Create an account</h1>
+    <label for="username">Username:</label>
+    <input id="username" type="text" th:field="*{username}">
+    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</p>
+    <label for="email">Email:</label>
+    <input id="email" type="email" th:field="*{email}">
+    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</p>
+    <label for="password">Password:</label>
+    <input id="password" type="password" th:field="*{password}">
+    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p>
+    <label for="passwordCheck">Password:</label>
+    <input id="passwordCheck" type="password" th:field="*{passwordCheck}">
+    <p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">Password Match Error</p>
+    <label></label>
+    <input type="submit" value="Register">
+    <br>
+    <p>Already have an account? <a th:href="@{/login}">Log in here</a></p>
+  </form>
+</body>
+
+</html>
+
 </html>
