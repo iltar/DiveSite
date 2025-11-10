@@ -57,10 +57,9 @@ nav a {
   text-decoration: none;
 }
 
-.profile-info {
+.user-info {
     width: 70%;
     margin: 10px auto;
-    border: 2px solid var(--headerColor);
 }
 
 .user-header {
@@ -71,13 +70,14 @@ nav a {
     background-color: var(--headerColor);
 }
 
-.user-info {
+.profile-info {
     width: 100%;
     min-height: 70px;
     background-color: var(--bgColor);
     color: var(--textColor);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
+    border: 2px solid var(--headerColor);
 }
 
 .user-name {
@@ -104,4 +104,40 @@ input {
   color: var(--textColor);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
+}
+
+.logbook {
+  width: 100%;
+  margin: 10px auto;
+  border: 2px solid var(--headerColor);
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--textColor);
+  color: var(--bg2Color);
+}
+
+.logbook h2 {
+ font-size: 24px;
+ padding: 0% 2%;
+}
+
+.divelog {
+  width: 100%;
+  margin: 10px auto;
+  border: 2px solid var(--headerColor);
+  color: var(--textColor);
+  font-size: 14px;
+  text-align: left;
+  background-color: var(--bgColor);
+  border-collapse: collapse;
+}
+
+.divelog th {
+  text-align: right;
+}
+
+.log-header {
+  background-color: var(--headerColor);
+  color: var(--bgColor);
+  font-size: 18px;
+  border-collapse: collapse;
 }

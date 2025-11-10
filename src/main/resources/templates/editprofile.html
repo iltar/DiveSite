@@ -15,9 +15,9 @@
             <input class="logout-btn" type="submit" value="Log out" />
         </form>
     </nav>
-    <div class="profile-info">
+    <div class="user-info">
         <div class="user-header"></div>
-        <table class="user-info">
+        <table class="profile-info">
             <form th:object="${usr}" th:action="@{/{username}/saveProfile(username=${usr.username})}" method="post"
                 action="#">
                 <input type="hidden" th:field="*{username}">

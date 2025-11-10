@@ -27,7 +27,7 @@ public class Divelog {
 
     @JsonIgnoreProperties("divelogs")
     @ManyToOne
-    @JoinColumn(name="userId")
+    @JoinColumn(name = "userId")
     @NotNull
     private User diver;
 
@@ -38,7 +38,7 @@ public class Divelog {
     private String description;
 
     @NotNull(message = "Dive date can't be empty")
-    @DateTimeFormat (pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Past(message = "Dive date can't be in the future")
     private LocalDate diveDate;
 
@@ -52,7 +52,7 @@ public class Divelog {
     private String country;
 
     private String region;
-    
+
     @NotBlank(message = "Divesite can't be empty")
     private String divesite;
 
@@ -61,7 +61,7 @@ public class Divelog {
     @NotNull(message = "Max depth can't be empty")
     @Positive(message = "Max depth must be bigger than 0")
     private double maxDepth;
-    
+
     @Positive(message = "Average depth must be bigger than 0")
     private double avgDepth;
 
@@ -287,7 +287,7 @@ public class Divelog {
     public void setDiver(User diver) {
         this.diver = diver;
     }
-    
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

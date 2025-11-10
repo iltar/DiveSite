@@ -1,43 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-  <html xmlns="http://www.thymeleaf.org">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="/user.css" />
-      <link rel="stylesheet" href="/buttons.css">
-      <title>DiveSite</title>
-    </head>
-    <body>
-      <nav>
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/user.css" />
+    <link rel="stylesheet" href="/buttons.css">
+    <title>DiveSite</title>
+</head>
+
+<body>
+    <nav>
         <a>DiveSite</a>
         <form class="logout" th:action="@{/logout}" method="post">
-          <input class="logout-btn" type="submit" value="Log out" />
+            <input class="logout-btn" type="submit" value="Log out" />
         </form>
-      </nav>
-      <div class="profile-info" >
+    </nav>
+    <div class="user-info">
         <div class="user-header"></div>
-        <table class="user-info">
+        <table class="profile-info">
             <tr>
                 <th class="user-name" th:text="${usr.username}"></th>
                 <th> Level:</th>
                 <td th:text="${usr.level}"></td>
-                <th >Dives:</th>
+                <th>Dives:</th>
                 <td th:text="${usr.dives}"></td>
             </tr>
             <tr>
                 <td colspan="5" th:text="${usr.description}"></td>
             </tr>
             <tr>
-                <td colspan="5"><a th:href="@{/{username}/editProfile(username=${usr.username})}" class="btn-green">Edit profile</a></td>
+                <td colspan="5"><a th:href="@{/{username}/editProfile(username=${usr.username})}" class="btn-green">Edit
+                        profile</a></td>
             </tr>
         </table>
         <div class="logbook">
-            <table th:each="dl : logs" class="divelog">
-
+            <h2>Logbook</h2>
+            <table th:each="dl : ${logs}" class="divelog">
+                <tr class="log-header">
+                    <td colspan="4">
+                        Divelog #<span th:text="${dl.diveNumber}"></span> at
+                        <span th:text="${dl.divesite}"></span>,
+                        <span th:text="${dl.country}"></span>,
+                        <span th:text="${dl.diveDate}"></span>
+                    </td>
+                    <td>
+                        <!--edit-->
+                    </td>
+                    <td>
+                        <!--delete-->
+                    </td>
+                </tr>
+                <tr>
+                    <th>Dive number:</th>
+                    <td th:text="${dl.diveNumber}"></td>
+                    <th>Dive date:</th>
+                    <td th:text="${dl.diveDate}"></td>
+                    <th>Country:</th>
+                    <td th:text="${dl.country}"></td>
+                </tr>
+                <tr>
+                    <th>Dive type:</th>
+                    <td th:text="${dl.diveType}"></td>
+                    <th>Time in:</th>
+                    <td th:text="${dl.startTime}"></td>
+                    <th>Region:</th>
+                    <td th:text="${dl.region}"></td>
+                </tr>
+                <tr>
+                    <th>Start air:</th>
+                    <td th:text="${dl.startAir}"></td>
+                    <th>Time out:</th>
+                    <td th:text="${dl.endTime}"></td>
+                    <th>Divesite:</th>
+                    <td th:text="${dl.divesite}"></td>
+                </tr>
+                <tr>
+                    <th>End air:</th>
+                    <td th:text="${dl.endAir}"></td>
+                    <th>Water temperature:</th>
+                    <td th:text="${dl.waterTemp}"></td>
+                    <th>Weigths:</th>
+                    <td th:text="${dl.weights}"></td>
+                </tr>
+                <tr>
+                    <th>Max depth:</th>
+                    <td th:text="${dl.maxDepth}"></td>
+                    <th>Current:</th>
+                    <td th:text="${dl.current}"></td>
+                    <th>Wetsuit:</th>
+                    <td th:text="${dl.wetsuit}"></td>
+                </tr>
+                <tr>
+                    <th>Averahe depth:</th>
+                    <td th:text="${dl.avgDepth}"></td>
+                    <th>Visibility:</th>
+                    <td th:text="${dl.visibility}"></td>
+                    <th>Gas blend:</th>
+                    <td th:text="${dl.gasBlend}"></td>
+                </tr>
+                <tr>
+                    <th>Description:</th>
+                    <td colspan="5" th:text="${dl.description}"></td>
+                </tr>
             </table>
         </div>
-      </div>
-    </body>
-  </html>
+    </div>
+</body>
+
+</html>
+
 </html>
