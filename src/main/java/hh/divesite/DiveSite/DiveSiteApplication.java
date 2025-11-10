@@ -1,13 +1,11 @@
 package hh.divesite.DiveSite;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import java.time.LocalDate;
 import hh.divesite.DiveSite.domain.Divelog;
 import hh.divesite.DiveSite.domain.DivelogRepository;
 import hh.divesite.DiveSite.domain.User;
@@ -23,7 +21,6 @@ public class DiveSiteApplication {
 	@Bean
 	CommandLineRunner testData(UserRepository userRep, DivelogRepository dlRep) {
 		return (args) -> {
-			// admin - salasana, user - salasana
 			User u1 = new User("admin", "$2a$10$gVT3OCW85KDXwSNgJdU5nOnCri4QHS1izB8gLcQr0lP7CFOD05cT6",
 					"admin@divesite.com", "ADMIN");
 			User u2 = new User("example", "$2a$10$gVT3OCW85KDXwSNgJdU5nOnCri4QHS1izB8gLcQr0lP7CFOD05cT6",
