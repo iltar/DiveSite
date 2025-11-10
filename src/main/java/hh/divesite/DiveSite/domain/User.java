@@ -1,7 +1,7 @@
 package hh.divesite.DiveSite.domain;
 
 import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,6 +30,7 @@ public class User {
     @Column (nullable = false)
     private String role;
 
+    @JsonIgnoreProperties("diver")
     @OneToMany
     private List<Divelog> divelogs;
 

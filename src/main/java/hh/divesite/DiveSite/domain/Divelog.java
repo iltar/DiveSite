@@ -3,6 +3,9 @@ package hh.divesite.DiveSite.domain;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +25,7 @@ public class Divelog {
     private Long divelogId;
     private LocalDateTime timeAdded;
 
+    @JsonIgnoreProperties("divelogs")
     @ManyToOne
     @JoinColumn(name="userId")
     @NotNull

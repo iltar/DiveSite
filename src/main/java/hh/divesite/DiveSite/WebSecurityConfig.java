@@ -20,14 +20,14 @@ public class WebSecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/*.css", "/welcome", "/register", "/saveUser").permitAll()
+                        .requestMatchers("/*.css", "/welcome", "/register", "/saveUser", "/api*").permitAll()
                         .requestMatchers("/divelogs", "/newDivelog", "/editDivelog*", "/deleteDivelog*", "/users",
                                 "/deleteUser*")
                         .hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .formLogin(formlogin -> formlogin
                         .loginPage("/login")
-                        // .defaultSuccessUrl("/divelogs", true)
+                        .defaultSuccessUrl("/divelogs", true)
                         .successHandler(customAuthenticationSuccessHandler)
                         .permitAll())
                 .logout((logout) -> logout

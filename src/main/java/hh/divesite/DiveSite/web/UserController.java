@@ -23,7 +23,7 @@ public class UserController {
         this.rep = rep;
     }
 
-    @GetMapping({ "/", "/welcome" })
+    @GetMapping({"/", "/welcome"})
     public String getWelcome() {
         return "welcome";
     }
