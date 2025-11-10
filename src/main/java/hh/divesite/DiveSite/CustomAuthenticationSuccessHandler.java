@@ -22,7 +22,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         if (roles.contains("ROLE_ADMIN")) {
             httpServletResponse.sendRedirect("/divelogs");
         } else {
-            httpServletResponse.sendRedirect("/welcome");
+            String location = authentication.getName() + "/profile";
+            httpServletResponse.sendRedirect(location);
         }
     }
 }

@@ -28,6 +28,9 @@ public class DiveSiteApplication {
 			User u2 = new User("example", "$2a$10$gVT3OCW85KDXwSNgJdU5nOnCri4QHS1izB8gLcQr0lP7CFOD05cT6", "example@divesite.com", "USER");
 			u2.setDivelogs(ls);
 
+			u2.setLevel("AOWD");
+			u2.setDives(32);
+			u2.setDescription("Example diver who dives");
 			userRep.save(u1);
 			userRep.save(u2);
 		};

@@ -26,14 +26,6 @@ body {
   font-size: 14px;
 }
 
-h1 {
-  color: var(--headerColor);
-  text-align: center;
-  font-size: 28px;
-  font-family: Arial, Helvetica, sans-serif;
-  width: 100%;
-}
-
 .login p {
   width: 100%;
 }
@@ -93,6 +85,14 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: bold;
+}
+
+h1 {
+  color: var(--headerColor);
+  text-align: center;
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
 }
 
 nav {

@@ -14,6 +14,8 @@ import hh.divesite.DiveSite.domain.RegisterForm;
 import hh.divesite.DiveSite.domain.User;
 import hh.divesite.DiveSite.domain.UserRepository;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class UserController {
@@ -38,6 +40,13 @@ public class UserController {
         model.addAttribute("form", new RegisterForm());
         return "register";
     }
+
+    @GetMapping("/{username}/profile")
+    public String getMethodName(@PathVariable("username") String usrName, Model model) {
+        model.addAttribute("usr", rep.findByUsername(usrName));
+        return "profile";
+    }
+    
 
     @GetMapping("/users")
     @PreAuthorize("hasRole('ADMIN')")
