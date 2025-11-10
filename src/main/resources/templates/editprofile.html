@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/user.css" />
+    <link rel="stylesheet" href="/buttons.css">
+    <title>DiveSite</title>
+</head>
+<body>
+    <nav>
+        <a>DiveSite</a>
+        <form class="logout" th:action="@{/logout}" method="post">
+            <input class="logout-btn" type="submit" value="Log out" />
+        </form>
+    </nav>
+    <div class="profile-info">
+        <div class="user-header"></div>
+        <table class="user-info">
+            <form th:object="${usr}" th:action="@{/{username}/saveProfile(username=${usr.username})}" method="post"
+                action="#">
+                <input type="hidden" th:field="*{username}">
+                <tr>
+                    <th class="user-name" th:text="*{username}"></th>
+                    <th> Level:</th>
+                    <td><input type="text" th:field="*{level}"></td>
+                    <th>Dives:</th>
+                    <td><input type="text" th:field="*{dives}"></td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td class="input-error-right" th:if="${#fields.hasErrors('dives')}" th:errors="*{dives}"></td>
+                </tr>
+                <tr>
+                    <td colspan="5"><textarea th:field="*{description}"></textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="5"><input type="submit" class="btn-green" value="Save changes"></td>
+                </tr>
+            </form>
+        </table>
+        <div class="logbook">
+            <table th:each="dl : usr.divelogs" class="divelog">
+
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
+
+</html>

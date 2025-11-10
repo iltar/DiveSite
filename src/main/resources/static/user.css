@@ -88,3 +88,20 @@ nav a {
 .user-info th, .user-info td {
   padding: 2px 2% 5px;
 }
+
+textarea {
+  width: 100%;
+  border: 1px solid var(--headerColor);
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+input {
+  border: 1px solid var(--headerColor);
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}

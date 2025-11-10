@@ -4,9 +4,9 @@
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="/login.css" />
       <link rel="stylesheet" href="/user.css" />
-      <title>Users</title>
+      <link rel="stylesheet" href="/buttons.css">
+      <title>DiveSite</title>
     </head>
     <body>
       <nav>
@@ -20,19 +20,21 @@
         <table class="user-info">
             <tr>
                 <th class="user-name" th:text="${usr.username}"></th>
-                <th> Level</th>
+                <th> Level:</th>
                 <td th:text="${usr.level}"></td>
                 <th >Dives:</th>
                 <td th:text="${usr.dives}"></td>
             </tr>
             <tr>
-                <td th:text="${usr.description}"></td>
-                <td><a class="btn-green">Edit profile</a></td>
+                <td colspan="5" th:text="${usr.description}"></td>
+            </tr>
+            <tr>
+                <td colspan="5"><a th:href="@{/{username}/editProfile(username=${usr.username})}" class="btn-green">Edit profile</a></td>
             </tr>
         </table>
         <div class="logbook">
-            <table th:each="dl : usr.divelogs" class="divelog">
-                
+            <table th:each="dl : logs" class="divelog">
+
             </table>
         </div>
       </div>
