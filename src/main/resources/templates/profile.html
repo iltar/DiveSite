@@ -36,7 +36,16 @@
             </tr>
         </table>
         <div class="logbook">
-            <h2>Logbook</h2>
+            <table>
+                <tr>
+                    <td>
+                        <h2>Logbook</h2>
+                    </td>
+                    <td class="buttons">
+                        <a th:href="@{/{username}/newDivelog(username=${usr.username})}" class="btn-green">Add new</a>
+                    </td>
+                </tr>
+            </table>
             <table th:each="dl : ${logs}" class="divelog">
                 <tr class="log-header">
                     <td colspan="4">
@@ -45,11 +54,11 @@
                         <span th:text="${dl.country}"></span>,
                         <span th:text="${dl.diveDate}"></span>
                     </td>
-                    <td>
-                        <!--edit-->
+                    <td class="buttons">
+                        <a th:href="@{/{username}/editDivelog/{id}(username=${usr.username},id=${dl.divelogId})}" class="btn-white">Edit</a>
                     </td>
-                    <td>
-                        <!--delete-->
+                    <td class="buttons">
+                        <a th:href="@{/{username}/deleteDivelog/{id}(username=${usr.username},id=${dl.divelogId})}" class="btn-red">Delete</a>
                     </td>
                 </tr>
                 <tr>

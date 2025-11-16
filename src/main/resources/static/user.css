@@ -58,7 +58,7 @@ nav a {
 }
 
 .user-info {
-    width: 70%;
+    width: 65%;
     margin: 10px auto;
 }
 
@@ -78,10 +78,11 @@ nav a {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     border: 2px solid var(--headerColor);
+    border-radius: 0 0 25px 25px;
 }
 
 .user-name {
-  font-size: 18px;
+  font-size: 20px;
   text-align: left;
 }
 
@@ -110,20 +111,22 @@ input {
   width: 100%;
   margin: 10px auto;
   border: 2px solid var(--headerColor);
+  border-radius: 0 0 25px 25px;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: var(--textColor);
+  background-color: var(--headerColor);
   color: var(--bg2Color);
 }
 
 .logbook h2 {
  font-size: 24px;
  padding: 0% 2%;
+ min-height: 20%;
 }
 
 .divelog {
   width: 100%;
-  margin: 10px auto;
-  border: 2px solid var(--headerColor);
+  margin: 10px auto 0 auto;
+  border-radius: 0 0 25px 25px;
   color: var(--textColor);
   font-size: 14px;
   text-align: left;
@@ -140,4 +143,35 @@ input {
   color: var(--bgColor);
   font-size: 18px;
   border-collapse: collapse;
+}
+
+table {
+  width: 100%;
+  margin: auto;
+  padding: none;
+  background-color: var(--textColor);
+}
+
+.buttons {
+  text-align: right;
+}
+
+.form-wrapper {
+  width: 70%;
+  margin: 5% auto;
+  padding: 0 0 2%;
+  background-color: var(--bgColor);
+  border: 2px solid var(--headerColor);
+  border-radius: 0 0 25px 25px;
+}
+
+h1 {
+  color: var(--bg2Color);
+  text-align: center;
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  margin: 0 0 2%;
+  padding: 2% 0;
+  background-color: var(--headerColor);
 }

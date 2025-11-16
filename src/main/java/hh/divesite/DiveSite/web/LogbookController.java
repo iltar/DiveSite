@@ -2,7 +2,6 @@ package hh.divesite.DiveSite.web;
 
 import java.util.List;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,114 +17,108 @@ import hh.divesite.DiveSite.domain.UserRepository;
 import jakarta.validation.Valid;
 
 @Controller
-public class DivelogController {
+public class LogbookController {
+
     private final DivelogRepository rep;
     private final UserRepository uRep;
 
-    public DivelogController(DivelogRepository rep, UserRepository uRep) {
+    public LogbookController(DivelogRepository rep, UserRepository uRep) {
         this.rep = rep;
         this.uRep = uRep;
     }
 
-    // http://localhost:8080/divelogs
-    @GetMapping("/divelogs")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String getDivelogs(Model model) {
-        model.addAttribute("dls", rep.findAll());
-        return "diveloglist";
-    }
-
-    @GetMapping("/newDivelog")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String getNewDivelog(Model model) {
-        Divelog dl = new Divelog(1);
+    @GetMapping("/{username}/newDivelog")
+    public String getNewDivelog(@PathVariable() String username, Model model) {
+        User usr = uRep.findByUsername(username);
+        Divelog dl = new Divelog(usr.getDives() + 1);
+        dl.setDiver(usr);
         model.addAttribute("dl", dl);
-        model.addAttribute("usrs", uRep.findByRole("USER"));
-        return "createdivelog";
+        return "addtologbook";
     }
 
-    @GetMapping("/editDivelog/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String getEditDivelog(@PathVariable() Long id, Model model) {
-        model.addAttribute("dl", rep.findById(id));
-        model.addAttribute("usrs", uRep.findByRole("USER"));
-        return "editdivelog";
+    @GetMapping("/{username}/editDivelog/{id}")
+    public String getEditDivelog(@PathVariable() String username, @PathVariable() Long id, Model model) {
+        User usr = uRep.findByUsername(username);
+        Divelog dl = rep.findByDivelogId(id);
+        dl.setDiver(usr);
+        model.addAttribute("dl", dl);
+        model.addAttribute("username", username);
+        return "editinlogbook";
     }
 
-    @PostMapping("/saveNewDivelog")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String postNewDivelog(@Valid @ModelAttribute() Divelog dl, BindingResult br, Model model) {
+    @PostMapping("/{username}/saveNewDivelog")
+    public String postNewDivelog(@Valid @ModelAttribute() Divelog dl,
+            BindingResult br, @PathVariable("username") String usrName, Model model) {
         if (!br.hasErrors()) {
-            User usr = dl.getDiver();
+            User usr = uRep.findByUsername(usrName);
             int i = dl.getDiveNumber();
             List<Divelog> dls = rep.findAllByDiver(usr);
             for (Divelog log : dls) {
                 // check that user has no dive with same dive number
                 if (log.getDiveNumber() == i) {
-                    br.rejectValue("diveNumber", "err.diveNumber", "Dive number already exists for user " + usr.getUsername()  +".");
-                    return "createdivelog";
+                    br.rejectValue("diveNumber", "err.diveNumber", "Dive number already exists.");
+                    return "addtologbook";
                 }
                 // check that dives with smaller dive number happened before this dive
                 if (i < log.getDiveNumber() && dl.getDiveDate().isAfter(log.getDiveDate())) {
                     br.rejectValue("diveDate", "err.diveDate",
-                            "User " + usr.getUsername() + "'s dive #"+ i +" cannot occur after dive #" + log.getDiveNumber());
-                    return "createdivelog";
+                            "Dive #" + i + " cannot occur after dive #" + log.getDiveNumber());
+                    return "addtologbook";
                 }
                 // check that dives with bigger dive number happened after this dive
                 if (i > log.getDiveNumber() && dl.getDiveDate().isBefore(log.getDiveDate())) {
                     br.rejectValue("diveDate", "err.diveDate",
-                            "User " + usr.getUsername() + "'s dive #"+ i +" cannot occur before dive #" + log.getDiveNumber());
-                    return "createdivelog";
+                            "Dive #" + i + " cannot occur before dive #" + log.getDiveNumber());
+                    return "addtologbook";
                 }
             }
             if (i > usr.getDives()) {
                 usr.setDives(i);
             }
             rep.save(dl);
-            return "redirect:/divelogs";
+            return "redirect:/{username}/profile";
         }
-        return "createdivelog";
+        return "addtologbook";
     }
 
-    @PostMapping("/saveEditedDivelog")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String postEditedDivelog(@Valid @ModelAttribute() Divelog dl, BindingResult br, Model model) {
+    @PostMapping("/{username}/saveEditedDivelog")
+    public String postEditedDivelog(@Valid @ModelAttribute() Divelog dl,
+            BindingResult br, @PathVariable("username") String usrName, Model model) {
         if (!br.hasErrors()) {
-            User usr = dl.getDiver();
+            User usr = uRep.findByUsername(usrName);
             int i = dl.getDiveNumber();
             List<Divelog> dls = rep.findAllByDiver(usr);
             for (Divelog log : dls) {
                 // check that user has no dive with same dive number
                 if (log.getDiveNumber() == i) {
-                    br.rejectValue("diveNumber", "err.diveNumber", "Dive number already exists for user " + usr.getUsername()  +".");
-                    return "editdivelog";
+                    br.rejectValue("diveNumber", "err.diveNumber", "Dive number already exists.");
+                    return "editinlogbook";
                 }
                 // check that dives with smaller dive number happened before this dive
                 if (i < log.getDiveNumber() && dl.getDiveDate().isAfter(log.getDiveDate())) {
                     br.rejectValue("diveDate", "err.diveDate",
-                            "User " + usr.getUsername() + "'s dive #"+ i +" cannot occur after dive #" + log.getDiveNumber());
-                    return "editdivelog";
+                            "Dive #" + i + " cannot occur after dive #" + log.getDiveNumber());
+                    return "editinlogbook";
                 }
                 // check that dives with bigger dive number happened after this dive
                 if (i > log.getDiveNumber() && dl.getDiveDate().isBefore(log.getDiveDate())) {
                     br.rejectValue("diveDate", "err.diveDate",
-                            "User " + usr.getUsername() + "'s dive #"+ i +" cannot occur before dive #" + log.getDiveNumber());
-                    return "editdivelog";
+                            "Dive #" + i + " cannot occur before dive #" + log.getDiveNumber());
+                    return "editinlogbook";
                 }
             }
             if (i > usr.getDives()) {
                 usr.setDives(i);
             }
             rep.save(dl);
-            return "redirect:/divelogs";
+            return "redirect:/{username}/profile";
         }
-        return "editdivelog";
+        return "editinlogbook";
     }
 
-    @GetMapping("/deleteDivelog/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String deleteDivelog(@PathVariable() Long id) {
+    @GetMapping("/{username}/deleteDivelog/{id}")
+    public String deleteDivelog(@PathVariable() String username, @PathVariable() Long id) {
         rep.deleteById(id);
-        return "redirect:/divelogs";
+        return "redirect:/{username}/profile";
     }
 }

@@ -6,13 +6,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-
 import hh.divesite.DiveSite.domain.DivelogRepository;
 import hh.divesite.DiveSite.domain.Profile;
 import hh.divesite.DiveSite.domain.User;
 import hh.divesite.DiveSite.domain.UserRepository;
 import jakarta.validation.Valid;
-
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -29,7 +27,7 @@ public class DSProfileController {
     public String getProfile(@PathVariable("username") String usrName, Model model) {
         User usr = rep.findByUsername(usrName);
         model.addAttribute("usr", new Profile(usr));
-        model.addAttribute("logs", dlRep.findAllByDiver(usr));
+        model.addAttribute("logs", dlRep.findAllByDiverOrderByDiveNumberDesc(usr));
         return "profile";
     }
 
@@ -37,12 +35,13 @@ public class DSProfileController {
     public String getEditProfile(@PathVariable("username") String usrName, Model model) {
         User usr = rep.findByUsername(usrName);
         model.addAttribute("usr", new Profile(usr));
-        model.addAttribute("logs", dlRep.findAllByDiver(usr));
+        model.addAttribute("logs", dlRep.findAllByDiverOrderByDiveNumberDesc(usr));
         return "editprofile";
     }
 
     @PostMapping("/{username}/saveProfile")
-    public String postMethodName(@Valid @ModelAttribute("usr") Profile profile, BindingResult br, @PathVariable() String username) {
+    public String postEditedProfile(@Valid @ModelAttribute("usr") Profile profile, BindingResult br,
+            @PathVariable() String username) {
         if (br.hasErrors()) {
             return "editprofile";
         }
@@ -53,6 +52,5 @@ public class DSProfileController {
         rep.save(usr);
         return "redirect:/{username}/profile";
     }
-    
-    
+
 }

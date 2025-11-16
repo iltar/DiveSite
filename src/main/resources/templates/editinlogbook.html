@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/user.css" />
+    <link rel="stylesheet" href="/buttons.css" />
+    <link rel="stylesheet" href="/forms.css" />
+    <title>Edit divelog</title>
+</head>
+
+<body>
+    <div class="form-wrapper">
+        <h1>Edit divelog</h1>
+        <form th:object="${dl}" th:action="@{/{username}/saveEditedDivelog(username=${username})}" method="post"
+            action="#">
+            <input type="hidden" th:field="*{timeAdded}" />
+            <input type="hidden" th:field="*{divelogId}">
+            <input type="hidden" th:field="*{diver}" />
+
+            <label for="diveNumber">Dive number<span class="red">*</label>
+            <input id="diveNumber" type="number" th:field="*{diveNumber}" />
+            <label for="diveDate">Dive date<span class="red">*</label>
+            <input id="diveDate" type="date" th:field="*{diveDate}" />
+            <p class="input-error" th:if="${#fields.hasErrors('diveNumber')}" th:errors="*{diveNumber}"></p>
+            <p class="input-error-right" th:if="${#fields.hasErrors('diveDate')}" th:errors="*{diveDate}"></p>
+
+            <label for="diveType">Dive type</label>
+            <input id="diveType" type="text" th:field="*{diveType}" />
+            <label for="startTime">Time in<span class="red">*</label>
+            <input id="startTime" type="time" th:field="*{startTime}" />
+            <p class="input-error-right" th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"></p>
+
+            <label for="startAir">Start air</label>
+            <input id="startAir" type="number" value="200" th:field="*{startAir}" />
+            <label id="endTime">Time out<span class="red">*</span></label>
+            <input id="endTime" type="time" th:field="*{endTime}" />
+            <p class="input-error" th:if="${#fields.hasErrors('startAir')}" th:errors="*{startAir}"></p>
+            <p class="input-error-right" th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"></p>
+
+            <label for="endAir">End air</label>
+            <input id="endAir" type="number" th:field="*{endAir}" />
+            <label for="country">Country<span class="red">*</label>
+            <input id="country" type="text" th:field="*{country}" />
+            <p class="input-error" th:if="${#fields.hasErrors('endAir')}" th:errors="*{endAir}"></p>
+            <p class="input-error-right" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></p>
+
+            <label for="maxDepth">Max depth<span class="red">*</label>
+            <input id="maxDepth" type="number" th:field="*{maxDepth}" />
+            <label for="region">Region</label>
+            <input id="region" type="text" th:field="*{region}" />
+            <p class="input-error" th:if="${#fields.hasErrors('maxDepth')}" th:errors="*{maxDepth}"></p>
+
+            <label for="avgDepth">Average depth</label>
+            <input id="avgDepth" type="number" th:field="*{avgDepth}" />
+            <label for="divesite">Divesite<span class="red">*</label>
+            <input id="divesite" type="text" th:field="*{divesite}" />
+            <p class="input-error" th:if="${#fields.hasErrors('avgDepth')}" th:errors="*{avgDepth}"></p>
+            <p class="input-error-right" th:if="${#fields.hasErrors('divesite')}" th:errors="*{divesite}"></p>
+
+            <label for="weights">Weigths</label>
+            <input id="weights" type="number" th:field="*{weights}" />
+            <label for="waterTemp">Water temperature</label>
+            <input id="waterTemp" type="number" th:field="*{waterTemp}" />
+            <p class="input-error" th:if="${#fields.hasErrors('weights')}" th:errors="*{weights}"></p>
+            <p class="input-error-right" th:if="${#fields.hasErrors('waterTemp')}" th:errors="*{waterTemp}"></p>
+
+            <label for="wetsuit">Wetsuit</label>
+            <input id="wetsuit" type="text" th:field="*{wetsuit}" />
+            <label for="current">Current</label>
+            <input id="current" type="text" th:field="*{current}" />
+
+            <label for="gasBlend">Gas blend</label>
+            <input id="gasBlend" type="text" th:field="*{gasBlend}" />
+            <label for="visibility">Visibility</label>
+            <input id="visibility" type="text" th:field="*{visibility}" />
+
+            <label for="description">Description</label>
+            <textarea id="description" th:field="*{description}"></textarea>
+
+            <input type="submit" value="Save changes" class="btn-green" />
+        </form>
+    </div>
+</body>
+
+</html>
+
+</html>

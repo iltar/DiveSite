@@ -14,7 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 
@@ -39,7 +39,7 @@ public class Divelog {
 
     @NotNull(message = "Dive date can't be empty")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Past(message = "Dive date can't be in the future")
+    @PastOrPresent(message = "Dive date can't be in the future")
     private LocalDate diveDate;
 
     @NotBlank(message = "Start time can't be empty")
@@ -84,11 +84,22 @@ public class Divelog {
     public Divelog() {
     }
 
-    public Divelog(Long divelogId, LocalDateTime timeAdded, User diver, int diveNumber, String description,
+    // constructor with default start values
+    public Divelog(int diveNumber) {
+        this.diveNumber = diveNumber;
+        this.timeAdded = LocalDateTime.now();
+        this.diveDate = LocalDate.now();
+        this.startAir = 200;
+        this.endAir = 50;
+        this.waterTemp = 24;
+        this.maxDepth = 10;
+        this.avgDepth = 5;
+    }
+
+    public Divelog(LocalDateTime timeAdded, User diver, int diveNumber, String description,
             LocalDate diveDate, String startTime, String endTime, String country, String region,
             String divesite, String diveType, double maxDepth, double avgDepth, int startAir, int endAir,
             int waterTemp, String current, String visibility, int weights, String wetsuit, String gasBlend) {
-        this.divelogId = divelogId;
         this.timeAdded = timeAdded;
         this.diver = diver;
         this.diveNumber = diveNumber;

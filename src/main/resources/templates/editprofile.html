@@ -40,9 +40,77 @@
                 </tr>
             </form>
         </table>
-        <div class="logbook">
-            <table th:each="dl : usr.divelogs" class="divelog">
-
+         <div class="logbook">
+            <table>
+                <tr>
+                    <td>
+                        <h2>Logbook</h2>
+                    </td>
+                </tr>
+            </table>
+            <table th:each="dl : ${logs}" class="divelog">
+                <tr class="log-header">
+                    <td colspan="4">
+                        Divelog #<span th:text="${dl.diveNumber}"></span> at
+                        <span th:text="${dl.divesite}"></span>,
+                        <span th:text="${dl.country}"></span>,
+                        <span th:text="${dl.diveDate}"></span>
+                    </td>
+                    <td colspan="2">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Dive number:</th>
+                    <td th:text="${dl.diveNumber}"></td>
+                    <th>Dive date:</th>
+                    <td th:text="${dl.diveDate}"></td>
+                    <th>Country:</th>
+                    <td th:text="${dl.country}"></td>
+                </tr>
+                <tr>
+                    <th>Dive type:</th>
+                    <td th:text="${dl.diveType}"></td>
+                    <th>Time in:</th>
+                    <td th:text="${dl.startTime}"></td>
+                    <th>Region:</th>
+                    <td th:text="${dl.region}"></td>
+                </tr>
+                <tr>
+                    <th>Start air:</th>
+                    <td th:text="${dl.startAir}"></td>
+                    <th>Time out:</th>
+                    <td th:text="${dl.endTime}"></td>
+                    <th>Divesite:</th>
+                    <td th:text="${dl.divesite}"></td>
+                </tr>
+                <tr>
+                    <th>End air:</th>
+                    <td th:text="${dl.endAir}"></td>
+                    <th>Water temperature:</th>
+                    <td th:text="${dl.waterTemp}"></td>
+                    <th>Weigths:</th>
+                    <td th:text="${dl.weights}"></td>
+                </tr>
+                <tr>
+                    <th>Max depth:</th>
+                    <td th:text="${dl.maxDepth}"></td>
+                    <th>Current:</th>
+                    <td th:text="${dl.current}"></td>
+                    <th>Wetsuit:</th>
+                    <td th:text="${dl.wetsuit}"></td>
+                </tr>
+                <tr>
+                    <th>Averahe depth:</th>
+                    <td th:text="${dl.avgDepth}"></td>
+                    <th>Visibility:</th>
+                    <td th:text="${dl.visibility}"></td>
+                    <th>Gas blend:</th>
+                    <td th:text="${dl.gasBlend}"></td>
+                </tr>
+                <tr>
+                    <th>Description:</th>
+                    <td colspan="5" th:text="${dl.description}"></td>
+                </tr>
             </table>
         </div>
     </div>

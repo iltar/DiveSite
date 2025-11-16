@@ -48,3 +48,17 @@
   font-size: 14px;
   font-weight: normal;
 }
+
+.btn-white {
+  background-color: var(--bgColor);
+  border: 1px solid var(--textColor);
+  width: 25%;
+  max-width: 120px;
+  border-radius: 10%;
+  padding: 2px 10px;
+  text-decoration: none;
+  color: var(--headerColor);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+}
