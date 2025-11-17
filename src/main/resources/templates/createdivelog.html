@@ -30,36 +30,36 @@
     <p class="input-error-right" th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"></p>
 
     <label for="startAir">Start air</label>
-    <input id="startAir" type="number" value="200" th:field="*{startAir}" />
+    <input id="startAir" type="text" value="200" th:field="*{startAir}" />
     <label id="endTime">Time out<span class="red">*</span></label>
     <input id="endTime" type="time" th:field="*{endTime}" />
     <p class="input-error" th:if="${#fields.hasErrors('startAir')}" th:errors="*{startAir}"></p>
     <p class="input-error-right" th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"></p>
 
     <label for="endAir">End air</label>
-    <input id="endAir" type="number" th:field="*{endAir}" />
+    <input id="endAir" type="text" th:field="*{endAir}" />
     <label for="country">Country<span class="red">*</label>
     <input id="country" type="text" th:field="*{country}" />
     <p class="input-error" th:if="${#fields.hasErrors('endAir')}" th:errors="*{endAir}"></p>
     <p class="input-error-right" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></p>
 
     <label for="maxDepth">Max depth<span class="red">*</label>
-    <input id="maxDepth" type="number" th:field="*{maxDepth}" />
+    <input id="maxDepth" type="text" th:field="*{maxDepth}" />
     <label for="region">Region</label>
     <input id="region" type="text" th:field="*{region}" />
     <p class="input-error" th:if="${#fields.hasErrors('maxDepth')}" th:errors="*{maxDepth}"></p>
 
     <label for="avgDepth">Average depth</label>
-    <input id="avgDepth" type="number" th:field="*{avgDepth}" />
+    <input id="avgDepth" type="text" th:field="*{avgDepth}" />
     <label for="divesite">Divesite<span class="red">*</label>
     <input id="divesite" type="text" th:field="*{divesite}" />
     <p class="input-error" th:if="${#fields.hasErrors('avgDepth')}" th:errors="*{avgDepth}"></p>
     <p class="input-error-right" th:if="${#fields.hasErrors('divesite')}" th:errors="*{divesite}"></p>
 
     <label for="weights">Weigths</label>
-    <input id="weights" type="number" th:field="*{weights}" />
+    <input id="weights" type="text" th:field="*{weights}" />
     <label for="waterTemp">Water temperature</label>
-    <input id="waterTemp" type="number" th:field="*{waterTemp}" />
+    <input id="waterTemp" type="text" th:field="*{waterTemp}" />
     <p class="input-error" th:if="${#fields.hasErrors('weights')}" th:errors="*{weights}"></p>
     <p class="input-error-right" th:if="${#fields.hasErrors('waterTemp')}" th:errors="*{waterTemp}"></p>
 

@@ -1,5 +1,6 @@
 package hh.divesite.DiveSite.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -40,7 +41,7 @@ public class DivelogController {
     public String getNewDivelog(Model model) {
         Divelog dl = new Divelog(1);
         model.addAttribute("dl", dl);
-        model.addAttribute("usrs", uRep.findByRole("USER"));
+        model.addAttribute("usrs", uRep.findAllByRole("USER"));
         return "createdivelog";
     }
 
@@ -48,14 +49,15 @@ public class DivelogController {
     @PreAuthorize("hasRole('ADMIN')")
     public String getEditDivelog(@PathVariable() Long id, Model model) {
         model.addAttribute("dl", rep.findByDivelogId(id));
-        model.addAttribute("usrs", uRep.findByRole("USER"));
+        model.addAttribute("usrs", uRep.findAllByRole("USER"));
         return "editdivelog";
     }
 
     @PostMapping("/saveNewDivelog")
     @PreAuthorize("hasRole('ADMIN')")
-    public String postNewDivelog(@ModelAttribute("usrs") List<User> usrs, @Valid @ModelAttribute("dl") Divelog dl,
-            BindingResult br) {
+    public String postNewDivelog(@Valid @ModelAttribute("dl") Divelog dl,
+            BindingResult br, Model model) {
+        model.addAttribute("usrs", uRep.findAllByRole("USER"));
         if (!br.hasErrors()) {
             User usr = dl.getDiver();
             int i = dl.getDiveNumber();
@@ -94,7 +96,8 @@ public class DivelogController {
     @PostMapping("/saveEditedDivelog/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public String postEditedDivelog(@Valid @ModelAttribute("dl") Divelog dl, BindingResult br,
-            @PathVariable("id") Long id) {
+            @PathVariable("id") Long id, Model model) {
+        model.addAttribute("usrs", uRep.findAllByRole("USER"));
         if (!br.hasErrors()) {
             User usr = dl.getDiver();
             int i = dl.getDiveNumber();
