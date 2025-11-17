@@ -14,7 +14,7 @@
 <body>
     <div class="form-wrapper">
         <h1>Edit divelog</h1>
-        <form th:object="${dl}" th:action="@{/{username}/saveEditedDivelog(username=${username})}" method="post"
+        <form th:object="${dl}" th:action="@{/{username}/saveEditedDivelog/{id}(username=${username},id=${dl.divelogId})}" method="post"
             action="#">
             <input type="hidden" th:field="*{timeAdded}" />
             <input type="hidden" th:field="*{divelogId}">

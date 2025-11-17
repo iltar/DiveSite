@@ -47,14 +47,15 @@ public class DivelogController {
     @GetMapping("/editDivelog/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public String getEditDivelog(@PathVariable() Long id, Model model) {
-        model.addAttribute("dl", rep.findById(id));
+        model.addAttribute("dl", rep.findByDivelogId(id));
         model.addAttribute("usrs", uRep.findByRole("USER"));
         return "editdivelog";
     }
 
     @PostMapping("/saveNewDivelog")
     @PreAuthorize("hasRole('ADMIN')")
-    public String postNewDivelog(@Valid @ModelAttribute() Divelog dl, BindingResult br, Model model) {
+    public String postNewDivelog(@ModelAttribute("usrs") List<User> usrs, @Valid @ModelAttribute("dl") Divelog dl,
+            BindingResult br) {
         if (!br.hasErrors()) {
             User usr = dl.getDiver();
             int i = dl.getDiveNumber();
@@ -62,19 +63,22 @@ public class DivelogController {
             for (Divelog log : dls) {
                 // check that user has no dive with same dive number
                 if (log.getDiveNumber() == i) {
-                    br.rejectValue("diveNumber", "err.diveNumber", "Dive number already exists for user " + usr.getUsername()  +".");
+                    br.rejectValue("diveNumber", "err.diveNumber",
+                            "Dive #" + i + " already exists for user " + usr.getUsername() + ".");
                     return "createdivelog";
                 }
                 // check that dives with smaller dive number happened before this dive
                 if (i < log.getDiveNumber() && dl.getDiveDate().isAfter(log.getDiveDate())) {
                     br.rejectValue("diveDate", "err.diveDate",
-                            "User " + usr.getUsername() + "'s dive #"+ i +" cannot occur after dive #" + log.getDiveNumber());
+                            "User " + usr.getUsername() + "'s dive #" + i + " cannot occur after dive #"
+                                    + log.getDiveNumber());
                     return "createdivelog";
                 }
                 // check that dives with bigger dive number happened after this dive
                 if (i > log.getDiveNumber() && dl.getDiveDate().isBefore(log.getDiveDate())) {
                     br.rejectValue("diveDate", "err.diveDate",
-                            "User " + usr.getUsername() + "'s dive #"+ i +" cannot occur before dive #" + log.getDiveNumber());
+                            "User " + usr.getUsername() + "'s dive #" + i + " cannot occur before dive #"
+                                    + log.getDiveNumber());
                     return "createdivelog";
                 }
             }
@@ -87,29 +91,33 @@ public class DivelogController {
         return "createdivelog";
     }
 
-    @PostMapping("/saveEditedDivelog")
+    @PostMapping("/saveEditedDivelog/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public String postEditedDivelog(@Valid @ModelAttribute() Divelog dl, BindingResult br, Model model) {
+    public String postEditedDivelog(@Valid @ModelAttribute("dl") Divelog dl, BindingResult br,
+            @PathVariable("id") Long id) {
         if (!br.hasErrors()) {
             User usr = dl.getDiver();
             int i = dl.getDiveNumber();
             List<Divelog> dls = rep.findAllByDiver(usr);
             for (Divelog log : dls) {
                 // check that user has no dive with same dive number
-                if (log.getDiveNumber() == i) {
-                    br.rejectValue("diveNumber", "err.diveNumber", "Dive number already exists for user " + usr.getUsername()  +".");
+                if (log.getDiveNumber() == i && log.getDivelogId() != id) {
+                    br.rejectValue("diveNumber", "err.diveNumber",
+                            "Dive #" + i + " already exists for user " + usr.getUsername() + ".");
                     return "editdivelog";
                 }
                 // check that dives with smaller dive number happened before this dive
                 if (i < log.getDiveNumber() && dl.getDiveDate().isAfter(log.getDiveDate())) {
                     br.rejectValue("diveDate", "err.diveDate",
-                            "User " + usr.getUsername() + "'s dive #"+ i +" cannot occur after dive #" + log.getDiveNumber());
+                            "User " + usr.getUsername() + "'s dive #" + i + " cannot occur after dive #"
+                                    + log.getDiveNumber());
                     return "editdivelog";
                 }
                 // check that dives with bigger dive number happened after this dive
                 if (i > log.getDiveNumber() && dl.getDiveDate().isBefore(log.getDiveDate())) {
                     br.rejectValue("diveDate", "err.diveDate",
-                            "User " + usr.getUsername() + "'s dive #"+ i +" cannot occur before dive #" + log.getDiveNumber());
+                            "User " + usr.getUsername() + "'s dive #" + i + " cannot occur before dive #"
+                                    + log.getDiveNumber());
                     return "editdivelog";
                 }
             }

@@ -47,8 +47,8 @@ public class LogbookController {
     }
 
     @PostMapping("/{username}/saveNewDivelog")
-    public String postNewDivelog(@Valid @ModelAttribute() Divelog dl,
-            BindingResult br, @PathVariable("username") String usrName, Model model) {
+    public String postNewDivelog(@Valid @ModelAttribute("dl") Divelog dl,
+            BindingResult br, @PathVariable("username") String usrName) {
         if (!br.hasErrors()) {
             User usr = uRep.findByUsername(usrName);
             int i = dl.getDiveNumber();
@@ -56,7 +56,7 @@ public class LogbookController {
             for (Divelog log : dls) {
                 // check that user has no dive with same dive number
                 if (log.getDiveNumber() == i) {
-                    br.rejectValue("diveNumber", "err.diveNumber", "Dive number already exists.");
+                    br.rejectValue("diveNumber", "err.diveNumber", "Dive #" + i + " already exists.");
                     return "addtologbook";
                 }
                 // check that dives with smaller dive number happened before this dive
@@ -81,17 +81,17 @@ public class LogbookController {
         return "addtologbook";
     }
 
-    @PostMapping("/{username}/saveEditedDivelog")
-    public String postEditedDivelog(@Valid @ModelAttribute() Divelog dl,
-            BindingResult br, @PathVariable("username") String usrName, Model model) {
+    @PostMapping("/{username}/saveEditedDivelog/{id}")
+    public String postEditedDivelog(@Valid @ModelAttribute("dl") Divelog dl,
+            BindingResult br, @PathVariable("username") String usrName, @PathVariable("id") Long id) {
         if (!br.hasErrors()) {
             User usr = uRep.findByUsername(usrName);
             int i = dl.getDiveNumber();
             List<Divelog> dls = rep.findAllByDiver(usr);
             for (Divelog log : dls) {
                 // check that user has no dive with same dive number
-                if (log.getDiveNumber() == i) {
-                    br.rejectValue("diveNumber", "err.diveNumber", "Dive number already exists.");
+                if (log.getDiveNumber() == i && id != log.getDivelogId()) {
+                    br.rejectValue("diveNumber", "err.diveNumber", "Dive #" + i + " already exists.");
                     return "editinlogbook";
                 }
                 // check that dives with smaller dive number happened before this dive
